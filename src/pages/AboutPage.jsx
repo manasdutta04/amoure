@@ -16,7 +16,7 @@ const AboutPage = () => {
         {/* Mission Section */}
         <div className="text-center mb-16">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            About PridePulse
+            About Amouré
           </h1>
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
             Creating meaningful connections in the LGBTQ+ community.
@@ -29,14 +29,14 @@ const AboutPage = () => {
             <div className="px-4 py-5 sm:p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h2>
               <p className="text-gray-700 mb-4">
-                PridePulse was created with a clear mission: to provide a safe, inclusive, and affirming space for the LGBTQ+ community to 
+                Amouré was created with a clear mission: to provide a safe, inclusive, and affirming space for the LGBTQ+ community to 
                 connect and form meaningful relationships. In a world where dating apps often fail to address the unique needs and 
                 experiences of LGBTQ+ individuals, we set out to create a platform that celebrates diversity in gender identity, 
                 expression, and sexual orientation.
               </p>
               <p className="text-gray-700 mb-4">
                 We believe that everyone deserves to find connection, whether that's friendship, romance, or community, in an environment 
-                that respects and validates their identity. PridePulse is more than just a dating app—it's a community built on respect, 
+                that respects and validates their identity. Amouré is more than just a dating app—it's a community built on respect, 
                 inclusivity, and genuine human connection.
               </p>
               <p className="text-gray-700">
@@ -104,7 +104,7 @@ const AboutPage = () => {
             <div className="px-4 py-5 sm:p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Team</h2>
               <p className="text-gray-700 mb-4">
-                PridePulse was developed by a diverse team of developers, designers, and community advocates who are passionate 
+                Amouré was developed by a diverse team of developers, designers, and community advocates who are passionate 
                 about creating technology that makes a positive impact. Our team members come from various backgrounds and include 
                 members of the LGBTQ+ community, allies, and experts in digital safety and community building.
               </p>
@@ -123,12 +123,12 @@ const AboutPage = () => {
             <div className="px-4 py-5 sm:p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Get in Touch</h2>
               <p className="text-gray-700 mb-6">
-                We value your feedback and suggestions. If you have ideas for how we can improve PridePulse or questions about our 
+                We value your feedback and suggestions. If you have ideas for how we can improve Amouré or questions about our 
                 mission and values, we'd love to hear from you.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <a 
-                  href="mailto:feedback@pridepulse.com" 
+                  href="mailto:feedback@amoure.com" 
                   className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   Send Feedback

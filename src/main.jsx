@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 /**
- * Main entry point for the PridePulse application
+ * Main entry point for the Amouré application
  * 
  * This application supports SDG 5 (Gender Equality) and SDG 10 (Reduced Inequalities)
  * by providing an inclusive and accessible dating platform for the LGBTQ+ community.

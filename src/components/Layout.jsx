@@ -78,10 +78,10 @@ const Layout = ({ children }) => {
               <Link 
                 to="/" 
                 className="flex-shrink-0 flex items-center" 
-                aria-label="PridePulse home"
+                aria-label="Amouré home"
               >
                 <span className="text-2xl font-bold bg-clip-text text-transparent pride-gradient">
-                  PridePulse
+                  Amouré
                 </span>
               </Link>
             </div>

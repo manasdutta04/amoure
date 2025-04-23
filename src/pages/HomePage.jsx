@@ -60,7 +60,7 @@ const HomePage = () => {
                       </span>
                     </h1>
                     <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      PridePulse fosters safe, inclusive connections for the LGBTQ+ community, 
+                      Amouré fosters safe, inclusive connections for the LGBTQ+ community, 
                       reducing social inequalities and empowering diverse identities. Find meaningful 
                       relationships in a secure and supportive environment.
                     </p>
@@ -100,7 +100,7 @@ const HomePage = () => {
                     
                     <div className="mt-6 sm:mt-10">
                       <p className="text-sm text-gray-500">
-                        PridePulse is committed to the UN Sustainable Development Goals of 
+                        Amouré is committed to the UN Sustainable Development Goals of 
                         Gender Equality (SDG 5) and Reduced Inequalities (SDG 10).
                       </p>
                     </div>
@@ -110,7 +110,7 @@ const HomePage = () => {
                   <div className="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-xl sm:overflow-hidden shadow-lg bg-gradient-to-br from-primary-100 to-white">
                     <div className="px-4 py-8 sm:px-10">
                       <div className="w-full h-64 bg-gradient-to-r from-pride-red via-pride-yellow to-pride-purple rounded-lg flex items-center justify-center">
-                        <span className="text-white text-3xl font-bold">PridePulse</span>
+                        <span className="text-white text-3xl font-bold">Amouré</span>
                       </div>
                     </div>
                   </div>
@@ -130,7 +130,7 @@ const HomePage = () => {
               A better way to connect
             </p>
             <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              PridePulse is designed to create a positive, affirming space where you can be yourself.
+              Amouré is designed to create a positive, affirming space where you can be yourself.
             </p>
           </div>
           
@@ -159,7 +159,7 @@ const HomePage = () => {
             <span className="block">Ready to find your connection?</span>
           </h2>
           <p className="mt-4 text-lg leading-6 text-primary-100">
-            Join thousands of LGBTQ+ individuals finding community, friendship, and love on PridePulse.
+            Join thousands of LGBTQ+ individuals finding community, friendship, and love on Amouré.
           </p>
           <div className="mt-8 flex justify-center">
             {currentUser ? (
