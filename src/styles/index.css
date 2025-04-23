@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold leading-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn {
+    @apply px-4 py-2 rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-primary-500;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  /* Form control styles */
+  .form-control {
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400
+    focus:outline-none focus:ring-primary-500 focus:border-primary-500;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden;
+  }
+  
+  .card-body {
+    @apply p-6;
+  }
+  
+  .card-title {
+    @apply text-xl font-semibold mb-2;
+  }
+  
+  /* Pride gradient backgrounds */
+  .pride-gradient {
+    @apply bg-gradient-to-r from-pride-red via-pride-yellow to-pride-purple;
+  }
+  
+  /* Accessibility focus styles */
+  .focus-visible:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-primary-500;
+  }
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Pride gradient for text and backgrounds */
+.pride-gradient {
+  background-image: linear-gradient(to right, 
+    #E40303, 
+    #FF8C00, 
+    #FFED00, 
+    #008026, 
+    #004DFF, 
+    #750787
+  );
+}
+
+/* Primary colors */
+:root {
+  --color-primary-100: #E6F7FF;
+  --color-primary-200: #BAE7FF;
+  --color-primary-300: #91D5FF;
+  --color-primary-400: #69C0FF;
+  --color-primary-500: #40A9FF;
+  --color-primary-600: #1890FF;
+  --color-primary-700: #096DD9;
+  --color-primary-800: #0050B3;
+  --color-primary-900: #003A8C;
+} 
