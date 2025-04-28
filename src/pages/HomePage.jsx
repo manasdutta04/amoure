@@ -107,11 +107,17 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
-                  <div className="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-xl sm:overflow-hidden shadow-lg bg-gradient-to-br from-primary-100 to-white">
+                  <div className="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-xl sm:overflow-hidden shadow-lg">
                     <div className="px-4 py-8 sm:px-10">
-                      <div className="w-full h-64 bg-gradient-to-r from-pride-red via-pride-yellow to-pride-purple rounded-lg flex items-center justify-center">
-                        <span className="text-white text-3xl font-bold">Amouré</span>
-                      </div>
+                      {/* 
+                        Place the amoure.jpeg image file in the public directory 
+                        of your project for this image to display properly 
+                      */}
+                      <img 
+                        src="/amoure.jpeg" 
+                        alt="Amouré" 
+                        className="w-full h-64 rounded-lg object-cover"
+                      />
                     </div>
                   </div>
                 </div>

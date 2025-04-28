@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Layout from '../components/Layout';
+import { motion } from 'framer-motion';
+import { HeartIcon } from '@heroicons/react/24/solid';
 
 /**
  * Login page component with email and Google authentication options
@@ -15,6 +17,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('login'); // 'login' or 'signup'
   const navigate = useNavigate();
   
   // For mock login, we'll just set a user in context
@@ -59,38 +62,184 @@ const LoginPage = () => {
     }, 1000);
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.6,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 300,
+        damping: 24
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hover: { 
+      scale: 1.03,
+      boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+    },
+    tap: { scale: 0.98 }
+  };
+
+  // Pride flag colors for animation
+  const prideColors = [
+    "rgb(228, 3, 3)",      // Red
+    "rgb(255, 140, 0)",    // Orange
+    "rgb(255, 237, 0)",    // Yellow
+    "rgb(0, 128, 38)",     // Green
+    "rgb(0, 77, 255)",     // Blue
+    "rgb(117, 7, 135)"     // Purple
+  ];
+
+  // Animation for the rainbow border
+  const rainbowAnimation = {
+    hidden: { 
+      backgroundPosition: "0% 50%" 
+    },
+    visible: { 
+      backgroundPosition: "100% 50%",
+      transition: { 
+        repeat: Infinity, 
+        repeatType: "reverse", 
+        duration: 3 
+      }
+    }
+  };
+
   return (
     <Layout>
-      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
-              create a new account
-            </Link>
-          </p>
-        </div>
+      <motion.div 
+        className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div 
+          className="sm:mx-auto sm:w-full sm:max-w-md text-center"
+          variants={itemVariants}
+        >
+          <motion.div 
+            className="inline-block mb-6"
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: 0, ease: "easeInOut" }}
+          >
+            <div className="w-16 h-16 mx-auto rounded-full pride-gradient flex items-center justify-center">
+              <HeartIcon className="h-8 w-8 text-white animate-pulse" />
+            </div>
+          </motion.div>
+          
+          <motion.h2 
+            className="text-center text-3xl font-extrabold bg-clip-text text-transparent pride-gradient"
+            variants={itemVariants}
+          >
+            Welcome to Amouré
+          </motion.h2>
+          
+          <motion.p 
+            className="mt-2 text-center text-base text-gray-600"
+            variants={itemVariants}
+          >
+            The inclusive dating app for the LGBTQ+ community
+          </motion.p>
+          
+          <motion.div 
+            className="flex justify-center mt-6 space-x-4"
+            variants={itemVariants}
+          >
+            <motion.button
+              className={`px-4 py-2 rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${
+                activeTab === 'login' 
+                  ? 'bg-primary-600 text-white' 
+                  : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
+              }`}
+              onClick={() => setActiveTab('login')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Sign In
+            </motion.button>
+            
+            <motion.button
+              className={`px-4 py-2 rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${
+                activeTab === 'signup' 
+                  ? 'bg-primary-600 text-white' 
+                  : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
+              }`}
+              onClick={() => navigate('/register')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Create Account
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <motion.div 
+          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
+          variants={itemVariants}
+        >
+          <motion.div 
+            className="bg-white py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 relative overflow-hidden"
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            style={{ 
+              borderWidth: '3px',
+              borderStyle: 'solid',
+              borderImage: 'linear-gradient(to right, #E40303, #FF8C00, #FFED00, #008026, #004DFF, #750787) 1'
+            }}
+          >
+            <motion.div 
+              className="absolute -inset-1 opacity-20 rounded-xl"
+              style={{ 
+                background: 'linear-gradient(90deg, rgb(228, 3, 3), rgb(255, 140, 0), rgb(255, 237, 0), rgb(0, 128, 38), rgb(0, 77, 255), rgb(117, 7, 135), rgb(228, 3, 3))',
+                backgroundSize: '200% 200%',
+              }}
+              variants={rainbowAnimation}
+            />
+            
             {error && (
-              <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+              <motion.div 
+                className="bg-red-50 border-l-4 border-red-400 p-4 mb-6"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              >
                 <div className="flex">
                   <div className="ml-3">
                     <p className="text-sm text-red-700">{error}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
             
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
+            <motion.form 
+              className="space-y-6 relative z-10" 
+              onSubmit={handleSubmit}
+              variants={containerVariants}
+            >
+              <motion.div variants={itemVariants}>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email address
                 </label>
                 <div className="mt-1">
-                  <input
+                  <motion.input
                     id="email"
                     name="email"
                     type="email"
@@ -99,16 +248,17 @@ const LoginPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    whileFocus={{ scale: 1.01 }}
                   />
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div variants={itemVariants}>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <div className="mt-1">
-                  <input
+                  <motion.input
                     id="password"
                     name="password"
                     type="password"
@@ -117,11 +267,15 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                    whileFocus={{ scale: 1.01 }}
                   />
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center justify-between">
+              <motion.div 
+                className="flex items-center justify-between"
+                variants={itemVariants}
+              >
                 <div className="flex items-center">
                   <input
                     id="remember-me"
@@ -135,24 +289,42 @@ const LoginPage = () => {
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-primary-600 hover:text-primary-500">
+                  <motion.a 
+                    href="#" 
+                    className="font-medium text-primary-600 hover:text-primary-500"
+                    whileHover={{ scale: 1.05, textDecoration: 'underline' }}
+                  >
                     Forgot your password?
-                  </a>
+                  </motion.a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
-                <button
+              <motion.div variants={itemVariants}>
+                <motion.button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
-                  {isLoading ? 'Signing in...' : 'Sign in'}
-                </button>
-              </div>
-            </form>
+                  {isLoading ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Signing in...
+                    </span>
+                  ) : 'Sign in'}
+                </motion.button>
+              </motion.div>
+            </motion.form>
 
-            <div className="mt-6">
+            <motion.div 
+              className="mt-6"
+              variants={itemVariants}
+            >
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300" />
@@ -163,21 +335,43 @@ const LoginPage = () => {
               </div>
 
               <div className="mt-6">
-                <button
+                <motion.button
                   onClick={handleGoogleLogin}
                   disabled={isLoading}
-                  className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-full shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
                   <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12.545 10.239v3.821h5.445c-0.712 2.315-2.647 3.972-5.445 3.972-3.332 0-6.033-2.701-6.033-6.032s2.701-6.032 6.033-6.032c1.498 0 2.866 0.549 3.921 1.453l2.814-2.814c-1.879-1.726-4.358-2.771-7.035-2.771-5.696 0-10.318 4.622-10.318 10.318s4.622 10.318 10.318 10.318c8.834 0 10.761-8.104 9.916-13.366l-9.616 1.143z" />
                   </svg>
                   Google
-                </button>
+                </motion.button>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </motion.div>
+            
+            <motion.div 
+              className="mt-6 text-center"
+              variants={itemVariants}
+            >
+              <p className="text-sm">
+                <span className="text-gray-600">New to Amouré? </span>
+                <motion.span 
+                  whileHover={{ 
+                    scale: 1.05, 
+                    textDecoration: 'underline' 
+                  }}
+                >
+                  <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
+                    Join our inclusive community today!
+                  </Link>
+                </motion.span>
+              </p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </Layout>
   );
 };
