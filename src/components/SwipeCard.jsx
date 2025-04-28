@@ -70,6 +70,8 @@ const SwipeCard = ({ profile, onSwipeLeft, onSwipeRight, onSuperLike }) => {
         return 'bg-[#BE18D6] text-white';
       case 'pansexual':
         return 'bg-[#FF1B8D] text-white';
+      case 'cisgender man':
+        return 'bg-[#078D70] text-white';
       default:
         return 'rainbow-badge text-white';
     }
@@ -80,17 +82,26 @@ const SwipeCard = ({ profile, onSwipeLeft, onSwipeRight, onSuperLike }) => {
       className="swipe-card-container"
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.7}
       onDragEnd={handleDragEnd}
+      initial={{ scale: 0.95, opacity: 0.5 }}
       animate={{
+        scale: 1,
+        opacity: 1,
+        rotate: 0,
         x: direction === 'left' ? -600 : direction === 'right' ? 600 : 0,
-        rotate: direction === 'left' ? -30 : direction === 'right' ? 30 : 0,
-        scale: direction ? 0.8 : 1,
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      exit={{
+        x: direction === 'left' ? -600 : direction === 'right' ? 600 : 0,
+        opacity: 0,
+        scale: 0.8,
+        transition: { duration: 0.3 }
+      }}
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
       whileTap={{ scale: 0.98 }}
-      whileDrag={{ scale: 1.05 }}
+      whileDrag={{ cursor: "grabbing" }}
     >
-      <div className="swipe-card relative">
+      <div className="swipe-card">
         {/* Photo Carousel */}
         <div className="h-full w-full relative">
           {profile.photoURLs.map((photo, index) => (
@@ -104,17 +115,18 @@ const SwipeCard = ({ profile, onSwipeLeft, onSwipeRight, onSuperLike }) => {
                 src={photo}
                 alt={`${profile.displayName} photo ${index + 1}`}
                 className="h-full w-full object-cover"
+                draggable="false"
               />
             </div>
           ))}
 
-          {/* Photo Navigation */}
-          <div className="absolute top-2 left-2 right-2 z-20 flex justify-between">
-            <div className="flex">
+          {/* Photo Navigation Indicators */}
+          <div className="absolute top-3 left-0 right-0 z-20 flex justify-center">
+            <div className="flex space-x-1">
               {profile.photoURLs.map((_, index) => (
                 <div
                   key={index}
-                  className={`h-1 w-10 mx-0.5 rounded-full ${
+                  className={`h-1 w-8 rounded-full transition-all duration-300 ${
                     index === currentPhotoIndex ? 'bg-white' : 'bg-white/40'
                   }`}
                 />
@@ -235,28 +247,6 @@ const SwipeCard = ({ profile, onSwipeLeft, onSwipeRight, onSuperLike }) => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Swipe Actions */}
-      <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex gap-4">
-        <button
-          onClick={() => { setDirection('left'); onSwipeLeft(profile.id); }}
-          className="p-3 bg-white rounded-full shadow-xl text-red-500 hover:bg-red-50 transition-colors"
-        >
-          <XMarkIcon className="h-8 w-8" />
-        </button>
-        <button
-          onClick={() => onSuperLike(profile.id)}
-          className="p-3 bg-white rounded-full shadow-xl text-blue-500 hover:bg-blue-50 transition-colors"
-        >
-          <StarIcon className="h-8 w-8" />
-        </button>
-        <button
-          onClick={() => { setDirection('right'); onSwipeRight(profile.id); }}
-          className="p-3 bg-white rounded-full shadow-xl text-green-500 hover:bg-green-50 transition-colors"
-        >
-          <HeartIcon className="h-8 w-8" />
-        </button>
       </div>
     </motion.div>
   );

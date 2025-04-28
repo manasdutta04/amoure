@@ -280,8 +280,6 @@ const Layout = ({ children }) => {
             <span>Amouré is committed to UN SDG 5 (Gender Equality) and SDG 10 (Reduced Inequalities)</span>
           </div>
         </div>
-        {/* Pride flag stripe at bottom */}
-        <div className="h-1 w-full pride-gradient mt-4"></div>
       </footer>
     </div>
   );

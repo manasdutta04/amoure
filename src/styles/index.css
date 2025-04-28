@@ -95,12 +95,25 @@
 
   /* Swipe card animations */
   .swipe-card-container {
-    @apply relative w-full max-w-md;
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    height: calc(100% - 100px);
+    margin: 0 auto;
+    border-radius: 20px;
+    perspective: 1000px;
   }
 
   .swipe-card {
-    @apply bg-white rounded-3xl overflow-hidden shadow-xl w-full max-w-md;
-    aspect-ratio: 3/5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform-style: preserve-3d;
+    will-change: transform;
   }
 
   /* Swipe buttons */
@@ -136,6 +149,51 @@
 
   .match-logo {
     @apply h-24 w-24 mx-auto mb-6 pride-gradient rounded-full flex items-center justify-center;
+  }
+  
+  /* Action buttons container */
+  .action-buttons-container {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    z-index: 50;
+  }
+  
+  /* Individual action buttons */
+  .action-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .action-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .action-button-pass {
+    color: #ff3b30;
+  }
+  
+  .action-button-like {
+    color: #34c759;
+  }
+  
+  .action-button-superlike {
+    color: #007aff;
   }
 }
 
