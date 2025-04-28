@@ -76,6 +76,67 @@
   .focus-visible:focus-visible {
     @apply outline-none ring-2 ring-offset-2 ring-primary-500;
   }
+
+  /* Rainbow badge for LGBTQ+ focused UI elements */
+  .rainbow-badge {
+    @apply relative overflow-hidden;
+    background: linear-gradient(
+      to right,
+      rgba(228, 3, 3, 0.7),
+      rgba(255, 140, 0, 0.7),
+      rgba(255, 237, 0, 0.7),
+      rgba(0, 128, 38, 0.7),
+      rgba(0, 77, 255, 0.7),
+      rgba(117, 7, 135, 0.7)
+    );
+    background-size: 200% 100%;
+    animation: rainbow-shift 8s linear infinite;
+  }
+
+  /* Swipe card animations */
+  .swipe-card-container {
+    @apply relative w-full max-w-md;
+  }
+
+  .swipe-card {
+    @apply bg-white rounded-3xl overflow-hidden shadow-xl w-full max-w-md;
+    aspect-ratio: 3/5;
+  }
+
+  /* Swipe buttons */
+  .swipe-button {
+    @apply p-4 bg-white rounded-full shadow-lg transform transition duration-200;
+  }
+
+  .swipe-button:hover {
+    @apply scale-110;
+  }
+
+  .swipe-button-dislike {
+    @apply text-red-500;
+  }
+
+  .swipe-button-like {
+    @apply text-green-500;
+  }
+
+  .swipe-button-superlike {
+    @apply text-blue-500;
+  }
+
+  /* Match notification */
+  .match-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center;
+  }
+
+  .match-animation {
+    @apply text-center p-8 max-w-lg;
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  .match-logo {
+    @apply h-24 w-24 mx-auto mb-6 pride-gradient rounded-full flex items-center justify-center;
+  }
 }
 
 /* Animation for loading states */
@@ -85,6 +146,26 @@
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+/* Animation for rainbow badge */
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Slow bouncing animation for match notification */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }
 
@@ -98,6 +179,57 @@
     #004DFF, 
     #750787
   );
+}
+
+/* Rainbow gradient border */
+.rainbow-border {
+  position: relative;
+}
+
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  bottom: -3px;
+  left: -3px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    to right,
+    #E40303,
+    #FF8C00,
+    #FFED00,
+    #008026,
+    #004DFF,
+    #750787
+  );
+  animation: rainbow-shift 8s linear infinite;
+}
+
+/* Pride flag colors with transparency for overlays */
+.pride-red-overlay {
+  background-color: rgba(228, 3, 3, 0.1);
+}
+
+.pride-orange-overlay {
+  background-color: rgba(255, 140, 0, 0.1);
+}
+
+.pride-yellow-overlay {
+  background-color: rgba(255, 237, 0, 0.1);
+}
+
+.pride-green-overlay {
+  background-color: rgba(0, 128, 38, 0.1);
+}
+
+.pride-blue-overlay {
+  background-color: rgba(0, 77, 255, 0.1);
+}
+
+.pride-purple-overlay {
+  background-color: rgba(117, 7, 135, 0.1);
 }
 
 /* Primary colors */
