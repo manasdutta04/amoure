@@ -171,7 +171,7 @@ const PrivacyPage = () => {
             At Amouré, we believe that everyone deserves both connection and privacy. Our policies are designed to protect all members, with special attention to the privacy concerns of LGBTQ+ individuals.
           </p>
           <p className="mt-4 text-sm text-gray-500">
-            Last Updated: April 28, 2023
+            Last Updated: April 28, 2025
           </p>
         </motion.div>
 

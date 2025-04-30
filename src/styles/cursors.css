@@ -1,0 +1,47 @@
+/* LGBTQ+ themed cursor styles */
+
+/* Default cursor - Pride themed pointer */
+html {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e40303"/><stop offset="20%" stop-color="%23ff8c00"/><stop offset="40%" stop-color="%23ffed00"/><stop offset="60%" stop-color="%23008026"/><stop offset="80%" stop-color="%23004dff"/><stop offset="100%" stop-color="%23750787"/></linearGradient></defs><path d="M9 2.5c.5-.9 1.8-.9 2.3 0l9.5 16.5c.5.8-.1 1.9-1.1 1.9h-5.8l2.5 2.1c.6.5.2 1.5-.6 1.5-.2 0-.4-.1-.6-.2l-5.3-4.3-2.8 2.4c-1 .8-2.4 0-2.1-1.2l3-16.7z" fill="url(%23rainbow)" stroke="white" stroke-width="1"/></svg>') 0 0, auto;
+}
+
+/* Interactive elements - Heart-shaped cursor */
+a, button, .btn, [role="button"],
+.clickable,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+.identity-capsule,
+.nav-link,
+.nav-indicator,
+.pride-dot {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e40303"/><stop offset="20%" stop-color="%23ff8c00"/><stop offset="40%" stop-color="%23ffed00"/><stop offset="60%" stop-color="%23008026"/><stop offset="80%" stop-color="%23004dff"/><stop offset="100%" stop-color="%23750787"/></linearGradient></defs><path d="M18 32c-.8 0-1.6-.3-2.2-.8C13.5 29.2 4 20.7 4 13c0-5 4-9 9-9 2.5 0 4.7 1 6.4 2.7l.1.1.5.7.5-.7.1-.1C22.3 5 24.5 4 27 4c5 0 9 4 9 9 0 7.7-9.5 16.2-11.8 18.1-.6.6-1.4.9-2.2.9z" fill="url(%23rainbow)" stroke="white" stroke-width="1.5"/></svg>') 10 10, pointer !important;
+}
+
+/* Ensure cursor works in Firefox and other browsers */
+a:hover, button:hover, .btn:hover, [role="button"]:hover,
+.clickable:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="checkbox"]:hover,
+input[type="radio"]:hover,
+select:hover,
+.identity-capsule:hover {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e40303"/><stop offset="20%" stop-color="%23ff8c00"/><stop offset="40%" stop-color="%23ffed00"/><stop offset="60%" stop-color="%23008026"/><stop offset="80%" stop-color="%23004dff"/><stop offset="100%" stop-color="%23750787"/></linearGradient></defs><path d="M18 32c-.8 0-1.6-.3-2.2-.8C13.5 29.2 4 20.7 4 13c0-5 4-9 9-9 2.5 0 4.7 1 6.4 2.7l.1.1.5.7.5-.7.1-.1C22.3 5 24.5 4 27 4c5 0 9 4 9 9 0 7.7-9.5 16.2-11.8 18.1-.6.6-1.4.9-2.2.9z" fill="url(%23rainbow)" stroke="white" stroke-width="1.5"/></svg>') 10 10, pointer !important;
+}
+
+/* Text input elements - I-beam cursor */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24"><defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e40303"/><stop offset="20%" stop-color="%23ff8c00"/><stop offset="40%" stop-color="%23ffed00"/><stop offset="60%" stop-color="%23008026"/><stop offset="80%" stop-color="%23004dff"/><stop offset="100%" stop-color="%23750787"/></linearGradient></defs><path d="M4 2h8M8 2v20M4 22h8" stroke="url(%23rainbow)" stroke-width="2" stroke-linecap="round"/></svg>') 8 12, text;
+} 

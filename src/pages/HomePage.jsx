@@ -13,6 +13,7 @@ import {
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
+import '../styles/IdentityAnimations.css';
 
 /**
  * Homepage component with hero section and feature highlights
@@ -111,56 +112,49 @@ const HomePage = () => {
                 <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
                   <div>
                     <div className="inline-flex items-center mb-4">
-                      <span className="bg-gradient-to-r from-[#ff0000] to-[#9c00ff] text-white px-4 py-1.5 text-sm font-bold rounded-full shadow-md">
-                        LGBTQ+ Focused Dating
+                      <span className="relative bg-gradient-to-r from-[#ff0000] via-[#ff8d00] via-[#ffee00] via-[#008e00] via-[#00d5ff] to-[#9c00ff] text-white px-5 py-2 text-sm font-bold rounded-full shadow-md overflow-hidden animate-gradient">
+                        <span className="relative z-10">LGBTQ+ Focused Dating</span>
+                        <span className="absolute inset-0 bg-gradient-to-r from-[#ff0000] via-[#ff8d00] via-[#ffee00] via-[#008e00] via-[#00d5ff] to-[#9c00ff] opacity-70 blur-sm"></span>
                       </span>
                     </div>
                     
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-gray-900 sm:mt-5 sm:text-5xl lg:mt-6">
-                      <span className="block mb-4 text-gray-900">Dating for the</span>
-                      <div className="w-full max-w-[600px] mx-auto lg:mx-0 relative">
-                        <span className="block text-[#0066ff] font-black text-5xl sm:text-6xl leading-tight">
-                          LGBTQ+
+                      <div className="flex flex-wrap items-center gap-3 mb-4">
+                        <span className="text-gray-900 text-4xl sm:text-5xl lg:text-6xl">Dating for the</span>
+                        <span className="identity-capsule relative inline-flex items-center justify-center px-10 py-3 rounded-full bg-white shadow-sm overflow-hidden min-w-[240px]">
+                          {identities.map((identity, index) => {
+                            // Define different colors for variety
+                            const colors = [
+                              'text-pride-red',
+                              'text-pride-orange',
+                              'text-pride-yellow',
+                              'text-pride-green', 
+                              'text-pride-blue',
+                              'text-pride-purple'
+                            ];
+                            
+                            return (
+                              <span 
+                                key={identity} 
+                                className={`
+                                  identity-tag absolute
+                                  ${colors[index % colors.length]}
+                                  font-bold text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap
+                                  flex items-center justify-center
+                                `}
+                                aria-hidden={index !== 0}
+                              >
+                                {identity}
+                              </span>
+                            );
+                          })}
                         </span>
-                        <span className="block text-[#0066ff] font-black text-5xl sm:text-6xl leading-tight">
-                          Community
-                        </span>
-                        <div className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-[#ff0000] via-[#ff8d00] via-[#ffee00] via-[#008e00] via-[#00d5ff] to-[#9c00ff] rounded-full"></div>
                       </div>
+                      
+                      <p className="mt-6 text-base text-gray-600 sm:mt-7 sm:text-xl lg:text-lg xl:text-xl">
+                        Find real connections in a bold, safe space celebrating every LGBTQ+ identity!
+                      </p>
                     </h1>
-                    
-                    <p className="mt-6 text-base text-gray-600 sm:mt-7 sm:text-xl lg:text-lg xl:text-xl">
-                      Amouré is designed specifically for LGBTQ+ individuals seeking meaningful connections
-                      in a safe, inclusive, and supportive environment that celebrates all identities.
-                    </p>
-                    
-                    {/* Identity tags */}
-                    <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2">
-                      {identities.map((identity, index) => {
-                        // Define different gradient classes for variety
-                        const gradientClasses = [
-                          'identity-tag-pride',
-                          'identity-tag-trans',
-                          'identity-tag-nonbinary',
-                          'identity-tag-bi',
-                          'identity-tag-lesbian',
-                          'identity-tag-pan'
-                        ];
-                        
-                        return (
-                          <span 
-                            key={identity} 
-                            className={`
-                              text-sm font-medium px-3 py-1.5 rounded-full shadow-sm
-                              ${gradientClasses[index % 6]}
-                              transform transition-all duration-300 hover:scale-110 hover:shadow-md
-                            `}
-                          >
-                            {identity}
-                          </span>
-                        );
-                      })}
-                    </div>
                     
                     <div className="mt-8 sm:mt-12">
                       {currentUser ? (

@@ -10,9 +10,12 @@ import {
   Bars3Icon,
   XMarkIcon,
   SparklesIcon,
-  QuestionMarkCircleIcon
+  QuestionMarkCircleIcon,
+  BellIcon
 } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
+import { BellAlertIcon } from '@heroicons/react/24/solid';
+import '../styles/cursors.css';
 
 /**
  * Layout component for consistent page structure with navigation
@@ -42,6 +45,40 @@ const Layout = ({ children }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Get latest match ID from localStorage
+  const getLatestMatchId = () => {
+    try {
+      // Get activeMatches from localStorage
+      const storedMatches = localStorage.getItem('activeMatches');
+      if (storedMatches) {
+        const matches = JSON.parse(storedMatches);
+        if (matches.length > 0) {
+          // Sort by lastAccessed to get the most recent match
+          matches.sort((a, b) => new Date(b.lastAccessed) - new Date(a.lastAccessed));
+          return matches[0];
+        }
+      }
+      return null;
+    } catch (error) {
+      console.error("Error getting latest match:", error);
+      return null;
+    }
+  };
+
+  // Navigate to chat with latest match
+  const handleGoToLatestMatch = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const latestMatch = getLatestMatchId();
+    if (latestMatch) {
+      navigate(`/chat/${latestMatch.id}`);
+    } else {
+      // If no latest match, just go to matches page
+      navigate('/matches');
+    }
+  };
+
   // Navigation items
   const navItems = [
     {
@@ -69,6 +106,29 @@ const Layout = ({ children }) => {
       requiresAuth: false
     }
   ];
+  
+  // Check if there are new matches
+  const hasNewMatches = () => {
+    try {
+      // Get activeMatches from localStorage
+      const storedMatches = localStorage.getItem('activeMatches');
+      if (storedMatches) {
+        const matches = JSON.parse(storedMatches);
+        // Consider a match "new" if it was created within the last 24 hours
+        const oneDayAgo = new Date();
+        oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+        
+        return matches.some(match => {
+          const matchDate = new Date(match.lastAccessed);
+          return matchDate > oneDayAgo;
+        });
+      }
+      return false;
+    } catch (error) {
+      console.error("Error checking for new matches:", error);
+      return false;
+    }
+  };
   
   // Handle logout
   const handleLogout = () => {
@@ -126,9 +186,6 @@ const Layout = ({ children }) => {
                   <div className="w-10 h-10 rounded-full pride-gradient flex items-center justify-center mr-2 rainbow-shimmer">
                     <HeartIconSolid className="h-5 w-5 text-white animated-heart" />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 rainbow-shimmer rounded-full pride-gradient"></div>
-                  </div>
                 </div>
                 <div className="flex flex-col items-start ml-1">
                   <span className="text-xl font-bold text-primary-600">
@@ -171,10 +228,15 @@ const Layout = ({ children }) => {
                     >
                       <item.icon className="h-5 w-5" aria-hidden="true" />
                       <span>{item.name}</span>
-                      {item.path === '/matches' && currentUser && (
+                      {item.path === '/matches' && currentUser && hasNewMatches() && (
                         <span className="flex h-5 w-5 relative -top-2 -right-1">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pride-red opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-4 w-4 pride-gradient items-center justify-center text-white text-xs font-bold shadow-sm">2</span>
+                          <button 
+                            onClick={handleGoToLatestMatch}
+                            className="relative inline-flex cursor-pointer"
+                          >
+                            <BellAlertIcon className="h-4 w-4 text-pride-red" aria-label="New match! Click to message them" />
+                          </button>
                         </span>
                       )}
                     </Link>
@@ -237,28 +299,36 @@ const Layout = ({ children }) => {
                   ];
                   
                   return (
-                    <Link
-                      key={item.name}
-                      to={item.path}
-                      className={`block px-3 py-2 rounded-lg text-base font-medium flex items-center space-x-2
-                        ${
-                          location.pathname === item.path
-                            ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-sm ring-2 ring-white`
-                            : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
-                        }
-                        focus:outline-none focus:ring-2 focus:ring-primary-500
-                      `}
-                      aria-current={location.pathname === item.path ? 'page' : undefined}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <item.icon className="h-5 w-5" aria-hidden="true" />
-                      <span>{item.name}</span>
-                      {item.path === '/matches' && currentUser && (
-                        <span className="inline-flex rounded-full pride-gradient text-white px-2 py-0.5 text-xs font-bold">
-                          2
-                        </span>
+                    <div key={item.name} className="flex items-center">
+                      <Link
+                        to={item.path}
+                        className={`block px-3 py-2 rounded-lg text-base font-medium flex items-center space-x-2 flex-grow
+                          ${
+                            location.pathname === item.path
+                              ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-sm ring-2 ring-white`
+                              : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
+                          }
+                          focus:outline-none focus:ring-2 focus:ring-primary-500
+                        `}
+                        aria-current={location.pathname === item.path ? 'page' : undefined}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <item.icon className="h-5 w-5" aria-hidden="true" />
+                        <span>{item.name}</span>
+                      </Link>
+                      {item.path === '/matches' && currentUser && hasNewMatches() && (
+                        <button
+                          onClick={(e) => {
+                            handleGoToLatestMatch(e);
+                            setIsMenuOpen(false);
+                          }}
+                          className="ml-2 p-2"
+                          aria-label="Go to latest match"
+                        >
+                          <BellAlertIcon className="h-5 w-5 text-pride-red animate-pulse" />
+                        </button>
                       )}
-                    </Link>
+                    </div>
                   );
                 })}
                 
@@ -298,9 +368,6 @@ const Layout = ({ children }) => {
       
       {/* Footer */}
       <footer className="bg-white">
-        {/* Rainbow divider before footer */}
-        <div className="h-2 rainbow-divider"></div>
-        
         <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 relative">
           {/* Subtle background elements */}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white opacity-50"></div>
@@ -333,12 +400,12 @@ const Layout = ({ children }) => {
             <div className="mt-8 border-t border-gray-200 pt-8">
               <div className="flex flex-col items-center justify-center">
                 <div className="flex space-x-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-pride-red transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-orange transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-yellow transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-green transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-blue transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-purple transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-red transform transition-all hover:scale-125 shadow-md pride-dot"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-orange transform transition-all hover:scale-125 shadow-md pride-dot"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-yellow transform transition-all hover:scale-125 shadow-md pride-dot"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-green transform transition-all hover:scale-125 shadow-md pride-dot"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-blue transform transition-all hover:scale-125 shadow-md pride-dot"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-purple transform transition-all hover:scale-125 shadow-md pride-dot"></div>
                 </div>
               </div>
             </div>

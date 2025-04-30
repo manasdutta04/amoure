@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Layout from '../components/Layout';
-import { ShieldCheckIcon, HeartIcon, StarIcon, PhotoIcon } from '@heroicons/react/24/solid';
+import { ShieldCheckIcon, HeartIcon, StarIcon, PhotoIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 import ProfileEditForm from '../components/ProfileEditForm';
 
 /**
@@ -15,6 +15,8 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState(null);
+  const fileInputRef = useRef(null);
+  const [isUploading, setIsUploading] = useState(false);
   
   useEffect(() => {
     // Simulate API call to get user profile
@@ -120,6 +122,48 @@ const ProfilePage = () => {
     setIsEditing(false);
   };
 
+  const handlePhotoUpload = (event) => {
+    setIsUploading(true);
+    const files = event.target.files;
+    
+    if (files && files.length > 0) {
+      const newPhotos = [...userProfile.photos || []];
+      
+      // Process each selected file
+      Array.from(files).forEach(file => {
+        // Create a FileReader to read the image
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          // Add the new photo URL to the array
+          newPhotos.push(e.target.result);
+          
+          // If this is the last file, update the state
+          if (newPhotos.length === userProfile.photos.length + files.length) {
+            setUserProfile({
+              ...userProfile,
+              photos: newPhotos
+            });
+            setIsUploading(false);
+          }
+        };
+        
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+      });
+    } else {
+      setIsUploading(false);
+    }
+  };
+
+  const handleRemovePhoto = (index) => {
+    const newPhotos = [...userProfile.photos];
+    newPhotos.splice(index, 1);
+    setUserProfile({
+      ...userProfile,
+      photos: newPhotos
+    });
+  };
+
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -176,27 +220,73 @@ const ProfilePage = () => {
 
             {/* Photo Gallery Section */}
             <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
-              <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
-                <PhotoIcon className="h-5 w-5 mr-2 text-primary-600" />
-                Photo Gallery
-              </h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-medium text-gray-900 flex items-center">
+                  <PhotoIcon className="h-5 w-5 mr-2 text-primary-600" />
+                  Photo Gallery
+                </h2>
+                <input 
+                  type="file" 
+                  ref={fileInputRef}
+                  className="hidden" 
+                  accept="image/*"
+                  multiple
+                  onChange={handlePhotoUpload}
+                />
+                <button
+                  onClick={() => fileInputRef.current.click()}
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transform transition-transform duration-300 hover:scale-105"
+                >
+                  <PlusIcon className="h-4 w-4 mr-1" />
+                  Add Photos
+                </button>
+              </div>
+              
+              {isUploading && (
+                <div className="mb-4 bg-blue-50 text-blue-700 p-2 rounded-md flex items-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-700 mr-2"></div>
+                  <span>Uploading photos...</span>
+                </div>
+              )}
+              
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {userProfile.photos?.map((photo, index) => (
                   <div 
                     key={index}
-                    className="relative aspect-square rounded-lg overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105"
+                    className="relative aspect-square rounded-lg overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105 group"
                   >
                     <img 
                       src={photo} 
                       alt={`${userProfile.displayName}'s photo ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <button 
+                        onClick={() => handleRemovePhoto(index)}
+                        className="p-2 bg-red-600 rounded-full text-white hover:bg-red-700 focus:outline-none"
+                      >
+                        <TrashIcon className="h-5 w-5" />
+                      </button>
+                    </div>
+                    {index === 0 && (
+                      <div className="absolute top-2 left-2 bg-primary-600 text-white text-xs px-2 py-1 rounded-md">
+                        Profile Photo
+                      </div>
+                    )}
                   </div>
                 ))}
-                <button className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-primary-500 transition-colors duration-300">
-                  <PhotoIcon className="h-8 w-8 text-gray-400" />
+                <button 
+                  onClick={() => fileInputRef.current.click()}
+                  className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center hover:border-primary-500 transition-colors duration-300"
+                >
+                  <PlusIcon className="h-8 w-8 text-gray-400" />
+                  <span className="text-sm text-gray-500 mt-2">Add Photos</span>
                 </button>
               </div>
+              
+              <p className="mt-3 text-sm text-gray-500">
+                You can upload up to 8 photos. Your first photo will be used as your profile photo.
+              </p>
             </div>
 
             {/* Bio Section */}

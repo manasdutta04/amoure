@@ -230,7 +230,7 @@ const TermsPage = () => {
             Welcome to Amouré, the dating platform designed for the LGBTQ+ community. These terms establish our shared commitment to a safe and inclusive environment.
           </p>
           <p className="mt-4 text-sm text-gray-500">
-            Effective Date: April 28, 2023
+            Effective Date: April 28, 2025
           </p>
         </motion.div>
 
