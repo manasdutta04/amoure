@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pride circle background -->
+  <defs>
+    <linearGradient id="prideGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E40303" />
+      <stop offset="16.6%" stop-color="#FF8C00" />
+      <stop offset="33.3%" stop-color="#FFED00" />
+      <stop offset="50%" stop-color="#008026" />
+      <stop offset="66.6%" stop-color="#004DFF" />
+      <stop offset="83.3%" stop-color="#750787" />
+      <stop offset="100%" stop-color="#E40303" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Pride circle background -->
+  <circle cx="32" cy="32" r="30" fill="url(#prideGradient)" />
+  
+  <!-- White heart shape -->
+  <path d="M32 44.7C31.4 44.7 30.9 44.5 30.4 44.1C26.9 41.3 24.1 38.8 22 36.7C19.1 33.8 16.5 30.6 16.5 26.7C16.5 23.4 19.2 20.7 22.5 20.7C25.4 20.7 27.5 22.3 29 24.5C30.5 22.3 32.6 20.7 35.5 20.7C38.8 20.7 41.5 23.4 41.5 26.7C41.5 30.6 38.9 33.8 36 36.7C33.9 38.8 31.1 41.3 33.6 44.1C33.1 44.5 32.6 44.7 32 44.7Z" fill="white"/>
+</svg> 

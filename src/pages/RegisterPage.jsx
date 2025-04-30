@@ -29,31 +29,33 @@ const RegisterPage = () => {
     agreeToTerms: false
   });
   
-  const genderOptions = [
-    { label: 'Select gender identity', value: '' },
-    { label: 'Woman', value: 'woman' },
-    { label: 'Man', value: 'man' },
-    { label: 'Non-binary', value: 'non-binary' },
-    { label: 'Transgender', value: 'transgender' },
-    { label: 'Genderqueer', value: 'genderqueer' },
-    { label: 'Genderfluid', value: 'genderfluid' },
-    { label: 'Agender', value: 'agender' },
-    { label: 'Prefer to self-describe', value: 'self-describe' },
-    { label: 'Prefer not to say', value: 'not-specified' }
+  // Extend the gender identity options to include more LGBTQ+ options
+  const genderIdentities = [
+    { value: 'woman', label: 'Woman' },
+    { value: 'man', label: 'Man' },
+    { value: 'transgender-woman', label: 'Transgender Woman' },
+    { value: 'transgender-man', label: 'Transgender Man' },
+    { value: 'non-binary', label: 'Non-Binary' },
+    { value: 'genderqueer', label: 'Genderqueer' },
+    { value: 'genderfluid', label: 'Genderfluid' },
+    { value: 'agender', label: 'Agender' },
+    { value: 'two-spirit', label: 'Two-Spirit' },
+    { value: 'questioning', label: 'Questioning' },
+    { value: 'other', label: 'Other' },
   ];
   
-  const sexualOrientationOptions = [
-    { label: 'Select sexual orientation', value: '' },
-    { label: 'Lesbian', value: 'lesbian' },
-    { label: 'Gay', value: 'gay' },
-    { label: 'Bisexual', value: 'bisexual' },
-    { label: 'Pansexual', value: 'pansexual' },
-    { label: 'Asexual', value: 'asexual' },
-    { label: 'Queer', value: 'queer' },
-    { label: 'Questioning', value: 'questioning' },
-    { label: 'Straight ally', value: 'straight-ally' },
-    { label: 'Prefer to self-describe', value: 'self-describe' },
-    { label: 'Prefer not to say', value: 'not-specified' }
+  // Extend the sexual orientation options
+  const sexualOrientations = [
+    { value: 'straight', label: 'Straight' },
+    { value: 'gay', label: 'Gay' },
+    { value: 'lesbian', label: 'Lesbian' },
+    { value: 'bisexual', label: 'Bisexual' },
+    { value: 'pansexual', label: 'Pansexual' },
+    { value: 'asexual', label: 'Asexual' },
+    { value: 'demisexual', label: 'Demisexual' },
+    { value: 'queer', label: 'Queer' },
+    { value: 'questioning', label: 'Questioning' },
+    { value: 'other', label: 'Other' },
   ];
 
   const handleInputChange = (e) => {
@@ -177,88 +179,34 @@ const RegisterPage = () => {
 
   return (
     <Layout>
-      <motion.div 
-        className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        <motion.div 
-          className="sm:mx-auto sm:w-full sm:max-w-md text-center"
-          variants={itemVariants}
-        >
-          <motion.div 
-            className="inline-block mb-6"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: 0, ease: "easeInOut" }}
-          >
-            <div className="w-16 h-16 mx-auto rounded-full pride-gradient flex items-center justify-center">
-              <HeartIcon className="h-8 w-8 text-white animate-pulse" />
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="flex justify-center">
+            <div className="w-20 h-20 rounded-full pride-gradient flex items-center justify-center">
+              <HeartIcon className="h-10 w-10 text-white animated-heart" />
             </div>
-          </motion.div>
+          </div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Join the <span className="text-primary-600">Amouré</span> Community
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600 max-w">
+            Create your profile to connect with the LGBTQ+ community
+          </p>
           
-          <motion.h2 
-            className="text-center text-3xl font-extrabold bg-clip-text text-transparent pride-gradient"
-            variants={itemVariants}
-          >
-            {currentSection === 1 ? 'Join Amouré' : 'Tell Us About Yourself'}
-          </motion.h2>
-          
-          <motion.p 
-            className="mt-2 text-center text-base text-gray-600"
-            variants={itemVariants}
-          >
-            {currentSection === 1 
-              ? 'Create your account to join our inclusive LGBTQ+ community' 
-              : 'Help us create an inclusive experience that celebrates your identity'}
-          </motion.p>
-        </motion.div>
+          {/* Pride flags display */}
+          <div className="mt-5 flex justify-center space-x-2">
+            <div className="w-8 h-8 pride-gradient rounded-full"></div>
+            <div className="w-8 h-8 trans-gradient rounded-full"></div>
+            <div className="w-8 h-8 nonbinary-gradient rounded-full"></div>
+            <div className="w-8 h-8 bi-gradient rounded-full"></div>
+            <div className="w-8 h-8 lesbian-gradient rounded-full"></div>
+            <div className="w-8 h-8 pan-gradient rounded-full"></div>
+          </div>
+        </div>
 
-        <motion.div 
-          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
-          variants={itemVariants}
-        >
-          <motion.div 
-            className="bg-white py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 relative overflow-hidden"
-            variants={itemVariants}
-            style={{ 
-              borderWidth: '3px',
-              borderStyle: 'solid',
-              borderImage: 'linear-gradient(to right, #E40303, #FF8C00, #FFED00, #008026, #004DFF, #750787) 1'
-            }}
-          >
-            <motion.div 
-              className="absolute -inset-1 opacity-20 rounded-xl"
-              style={{ 
-                background: 'linear-gradient(90deg, rgb(228, 3, 3), rgb(255, 140, 0), rgb(255, 237, 0), rgb(0, 128, 38), rgb(0, 77, 255), rgb(117, 7, 135), rgb(228, 3, 3))',
-                backgroundSize: '200% 200%',
-              }}
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ 
-                duration: 15,
-                repeat: Infinity,
-                repeatType: 'loop'
-              }}
-            />
-            
-            {error && (
-              <motion.div 
-                className="bg-red-50 border-l-4 border-red-400 p-4 mb-6 relative z-10"
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              >
-                <div className="flex">
-                  <div className="ml-3">
-                    <p className="text-sm text-red-700">{error}</p>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-            
+        {/* Form card */}
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 pride-border">
             <motion.form 
               className="space-y-6 relative z-10" 
               onSubmit={handleSubmit}
@@ -454,7 +402,7 @@ const RegisterPage = () => {
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                         whileFocus={{ scale: 1.01 }}
                       >
-                        {genderOptions.map(option => (
+                        {genderIdentities.map(option => (
                           <option key={option.value} value={option.value}>
                             {option.label}
                           </option>
@@ -477,7 +425,7 @@ const RegisterPage = () => {
                         className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                         whileFocus={{ scale: 1.01 }}
                       >
-                        {sexualOrientationOptions.map(option => (
+                        {sexualOrientations.map(option => (
                           <option key={option.value} value={option.value}>
                             {option.label}
                           </option>
@@ -579,9 +527,9 @@ const RegisterPage = () => {
               <SparklesIcon className="h-3 w-3 mr-1" />
               <span>A safe space for all identities</span>
             </motion.div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

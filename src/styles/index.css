@@ -239,6 +239,23 @@
   );
 }
 
+/* Text with pride gradient */
+.pride-text {
+  background-image: linear-gradient(to right, 
+    #E40303, 
+    #FF8C00, 
+    #FFED00, 
+    #008026, 
+    #004DFF, 
+    #750787
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #750787; /* Fallback color if gradient doesn't work */
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Rainbow gradient border */
 .rainbow-border {
   position: relative;
@@ -301,4 +318,526 @@
   --color-primary-700: #096DD9;
   --color-primary-800: #0050B3;
   --color-primary-900: #003A8C;
+}
+
+/* Pride gradient and color variables */
+:root {
+  --pride-red: #E40303;
+  --pride-orange: #FF8C00;
+  --pride-yellow: #FFED00;
+  --pride-green: #008026;
+  --pride-blue: #004DFF;
+  --pride-purple: #750787;
+  
+  --trans-blue: #55CDFC;
+  --trans-pink: #F7A8B8;
+  --trans-white: #FFFFFF;
+  
+  --nonbinary-yellow: #FFF430;
+  --nonbinary-white: #FFFFFF;
+  --nonbinary-purple: #9C59D1;
+  --nonbinary-black: #000000;
+  
+  --lesbian-darkest: #8A1E04;
+  --lesbian-dark: #C64D53;
+  --lesbian-medium: #E4ACCF;
+  --lesbian-light: #FFFFFF;
+  --lesbian-lightest: #D362A4;
+  
+  --bi-pink: #D60270;
+  --bi-purple: #9B4F96;
+  --bi-blue: #0038A8;
+  
+  --pan-pink: #FF218C;
+  --pan-yellow: #FFD800;
+  --pan-blue: #21B1FF;
+}
+
+/* Rainbow gradient */
+.pride-gradient {
+  background: linear-gradient(to right, 
+    var(--pride-red), 
+    var(--pride-orange), 
+    var(--pride-yellow), 
+    var(--pride-green), 
+    var(--pride-blue), 
+    var(--pride-purple)
+  );
+}
+
+/* Trans flag gradient */
+.trans-gradient {
+  background: linear-gradient(to right,
+    var(--trans-blue),
+    var(--trans-pink),
+    var(--trans-white),
+    var(--trans-pink),
+    var(--trans-blue)
+  );
+}
+
+/* Non-binary flag gradient */
+.nonbinary-gradient {
+  background: linear-gradient(to right,
+    var(--nonbinary-yellow),
+    var(--nonbinary-white),
+    var(--nonbinary-purple),
+    var(--nonbinary-black)
+  );
+}
+
+/* Bisexual flag gradient */
+.bi-gradient {
+  background: linear-gradient(to right,
+    var(--bi-pink),
+    var(--bi-purple),
+    var(--bi-blue)
+  );
+}
+
+/* Lesbian flag gradient */
+.lesbian-gradient {
+  background: linear-gradient(to right,
+    var(--lesbian-darkest),
+    var(--lesbian-dark),
+    var(--lesbian-medium),
+    var(--lesbian-light),
+    var(--lesbian-lightest)
+  );
+}
+
+/* Pansexual flag gradient */
+.pan-gradient {
+  background: linear-gradient(to right,
+    var(--pan-pink),
+    var(--pan-yellow),
+    var(--pan-blue)
+  );
+}
+
+/* Animated pride shimmer */
+.pride-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.pride-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* Pride borders */
+.pride-border {
+  border: 3px solid;
+  border-image: linear-gradient(to right, 
+    var(--pride-red), 
+    var(--pride-orange), 
+    var(--pride-yellow), 
+    var(--pride-green), 
+    var(--pride-blue), 
+    var(--pride-purple)
+  ) 1;
+}
+
+.pride-border-top {
+  border-top: 3px solid;
+  border-image: linear-gradient(to right, 
+    var(--pride-red), 
+    var(--pride-orange), 
+    var(--pride-yellow), 
+    var(--pride-green), 
+    var(--pride-blue), 
+    var(--pride-purple)
+  ) 1;
+}
+
+/* Custom button styles */
+.btn {
+  @apply font-medium rounded-full transition-all duration-200 inline-flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:outline-none;
+}
+
+.btn-secondary {
+  @apply bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:outline-none;
+}
+
+.btn-pride {
+  @apply text-white focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 focus:outline-none;
+  background: linear-gradient(90deg, 
+    var(--pride-red), 
+    var(--pride-orange), 
+    var(--pride-yellow), 
+    var(--pride-green), 
+    var(--pride-blue), 
+    var(--pride-purple)
+  );
+  background-size: 400% 100%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.btn-pride:hover {
+  background-size: 300% 100%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Tag/chip styles for identities */
+.identity-tag {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+}
+
+.identity-tag-pride {
+  @apply text-white;
+  background: linear-gradient(90deg, var(--pride-red), var(--pride-purple));
+}
+
+.identity-tag-trans {
+  @apply text-gray-800;
+  background: linear-gradient(90deg, var(--trans-blue), var(--trans-pink));
+}
+
+.identity-tag-nonbinary {
+  @apply text-gray-800;
+  background: linear-gradient(90deg, var(--nonbinary-yellow), var(--nonbinary-purple));
+}
+
+.identity-tag-bi {
+  @apply text-white;
+  background: linear-gradient(90deg, var(--bi-pink), var(--bi-blue));
+}
+
+.identity-tag-lesbian {
+  @apply text-white;
+  background: linear-gradient(90deg, var(--lesbian-darkest), var(--lesbian-lightest));
+}
+
+.identity-tag-pan {
+  @apply text-gray-800;
+  background: linear-gradient(90deg, var(--pan-pink), var(--pan-yellow), var(--pan-blue));
+}
+
+/* Animated heart */
+.animated-heart {
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.25);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 105, 180, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 105, 180, 0);
+  }
+}
+
+/* Custom card styles */
+.card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden relative;
+}
+
+.card.pride-card {
+  @apply pride-border;
+}
+
+.card.pride-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  @apply pride-gradient;
+}
+
+/* Custom input styles */
+.input-pride:focus {
+  border-color: var(--pride-purple);
+  box-shadow: 0 0 0 1px var(--pride-purple);
+}
+
+.input-pride:focus-within {
+  border-image: linear-gradient(to right, 
+    var(--pride-red), 
+    var(--pride-orange), 
+    var(--pride-yellow), 
+    var(--pride-green), 
+    var(--pride-blue), 
+    var(--pride-purple)
+  ) 1;
+}
+
+/* Rainbow divider */
+.rainbow-divider {
+  height: 2px;
+  @apply pride-gradient;
+  margin: 1.5rem 0;
+}
+
+/* Coming out confetti explosion */
+@keyframes confetti-explosion {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  animation: confetti-explosion 1s ease-out forwards;
+}
+
+.confetti-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pride color utilities for text and backgrounds */
+.text-pride-red { color: var(--pride-red); }
+.text-pride-orange { color: var(--pride-orange); }
+.text-pride-yellow { color: var(--pride-yellow); }
+.text-pride-green { color: var(--pride-green); }
+.text-pride-blue { color: var(--pride-blue); }
+.text-pride-purple { color: var(--pride-purple); }
+
+.bg-pride-red { background-color: var(--pride-red); }
+.bg-pride-orange { background-color: var(--pride-orange); }
+.bg-pride-yellow { background-color: var(--pride-yellow); }
+.bg-pride-green { background-color: var(--pride-green); }
+.bg-pride-blue { background-color: var(--pride-blue); }
+.bg-pride-purple { background-color: var(--pride-purple); }
+
+/* Animated badge for new matches */
+.new-match-badge {
+  @apply absolute -top-1 -right-1 flex h-5 w-5;
+}
+
+.new-match-badge .ping {
+  @apply absolute inline-flex h-full w-full rounded-full pride-gradient opacity-75;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.new-match-badge .badge {
+  @apply relative inline-flex rounded-full h-5 w-5 bg-pride-purple text-white items-center justify-center text-xs;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Loading indicators */
+.loading-spinner {
+  @apply inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite];
+}
+
+.loading-dots:after {
+  content: '.';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80%, 100% {
+    content: '';
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply pride-gradient;
+  border-radius: 10px;
+}
+
+/* Focus styles that use pride colors */
+.focus-pride:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(117, 7, 135, 0.5);
+}
+
+/* Customized text shadow for headings */
+.text-shadow-lg {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  border-bottom: 4px solid currentColor;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Blob animation for background elements */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Navigation highlight indicator with pride colors */
+.nav-indicator {
+  position: relative;
+}
+
+.nav-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--pride-red),
+    var(--pride-orange),
+    var(--pride-yellow),
+    var(--pride-green),
+    var(--pride-blue), 
+    var(--pride-purple)
+  );
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+.nav-indicator:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Active navigation item underline animation */
+.active-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.active-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--pride-red),
+    var(--pride-orange),
+    var(--pride-yellow),
+    var(--pride-green),
+    var(--pride-blue), 
+    var(--pride-purple)
+  );
+  background-size: 200% 100%;
+  animation: rainbow-shift 3s linear infinite;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease;
+}
+
+.active-nav-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 } 

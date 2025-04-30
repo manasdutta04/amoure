@@ -8,9 +8,12 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import MatchesPage from './pages/MatchesPage';
+import ChatPage from './pages/ChatPage';
 import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SafetyPage from './pages/SafetyPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 
 // Import styles
 import './styles/index.css';
@@ -113,6 +116,30 @@ function App() {
             </motion.div>
           } />
           
+          <Route path="/privacy" element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <PrivacyPage />
+            </motion.div>
+          } />
+          
+          <Route path="/terms" element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <TermsPage />
+            </motion.div>
+          } />
+          
           {/* Protected routes - wrapped in transition effects */}
           <Route path="/profile" element={
             <motion.div
@@ -135,6 +162,30 @@ function App() {
               transition={pageTransition}
             >
               <PrivateRoute component={MatchesPage} />
+            </motion.div>
+          } />
+          
+          <Route path="/chat" element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <PrivateRoute component={ChatPage} />
+            </motion.div>
+          } />
+          
+          <Route path="/chat/:chatId" element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <PrivateRoute component={ChatPage} />
             </motion.div>
           } />
           
@@ -171,4 +222,4 @@ function ProtectedRoute({ element }) {
   return element;
 }
 
-export default App; 
+export default App;

@@ -123,110 +123,41 @@ const LoginPage = () => {
 
   return (
     <Layout>
-      <motion.div 
-        className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        <motion.div 
-          className="sm:mx-auto sm:w-full sm:max-w-md text-center"
-          variants={itemVariants}
-        >
-          <motion.div 
-            className="inline-block mb-6"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: 0, ease: "easeInOut" }}
-          >
-            <div className="w-16 h-16 mx-auto rounded-full pride-gradient flex items-center justify-center">
-              <HeartIcon className="h-8 w-8 text-white animate-pulse" />
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="flex justify-center">
+            <div className="w-20 h-20 rounded-full pride-gradient rainbow-shimmer flex items-center justify-center">
+              <HeartIcon className="h-10 w-10 text-white animated-heart" />
             </div>
-          </motion.div>
+          </div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Sign in to <span className="text-primary-600">Amouré</span>
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Your LGBTQ+ community awaits
+          </p>
           
-          <motion.h2 
-            className="text-center text-3xl font-extrabold bg-clip-text text-transparent pride-gradient"
-            variants={itemVariants}
-          >
-            Welcome to Amouré
-          </motion.h2>
-          
-          <motion.p 
-            className="mt-2 text-center text-base text-gray-600"
-            variants={itemVariants}
-          >
-            The inclusive dating app for the LGBTQ+ community
-          </motion.p>
-          
-          <motion.div 
-            className="flex justify-center mt-6 space-x-4"
-            variants={itemVariants}
-          >
-            <motion.button
-              className={`px-4 py-2 rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${
-                activeTab === 'login' 
-                  ? 'bg-primary-600 text-white' 
-                  : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
-              }`}
-              onClick={() => setActiveTab('login')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Sign In
-            </motion.button>
-            
-            <motion.button
-              className={`px-4 py-2 rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${
-                activeTab === 'signup' 
-                  ? 'bg-primary-600 text-white' 
-                  : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
-              }`}
-              onClick={() => navigate('/register')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Create Account
-            </motion.button>
-          </motion.div>
-        </motion.div>
+          {/* Pride identities */}
+          <div className="mt-3 flex justify-center flex-wrap gap-2 max-w-xs mx-auto">
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-pride">Gay</span>
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-lesbian">Lesbian</span>
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-bi">Bisexual</span>
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-trans">Transgender</span>
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-nonbinary">Non-Binary</span>
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full identity-tag-pan">Pansexual</span>
+          </div>
+        </div>
 
-        <motion.div 
-          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
-          variants={itemVariants}
-        >
-          <motion.div 
-            className="bg-white py-8 px-4 shadow-lg sm:rounded-xl sm:px-10 relative overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            style={{ 
-              borderWidth: '3px',
-              borderStyle: 'solid',
-              borderImage: 'linear-gradient(to right, #E40303, #FF8C00, #FFED00, #008026, #004DFF, #750787) 1'
-            }}
-          >
-            <motion.div 
-              className="absolute -inset-1 opacity-20 rounded-xl"
-              style={{ 
-                background: 'linear-gradient(90deg, rgb(228, 3, 3), rgb(255, 140, 0), rgb(255, 237, 0), rgb(0, 128, 38), rgb(0, 77, 255), rgb(117, 7, 135), rgb(228, 3, 3))',
-                backgroundSize: '200% 200%',
-              }}
-              variants={rainbowAnimation}
-            />
-            
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 pride-border">
             {error && (
-              <motion.div 
-                className="bg-red-50 border-l-4 border-red-400 p-4 mb-6"
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              >
+              <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
                 <div className="flex">
                   <div className="ml-3">
                     <p className="text-sm text-red-700">{error}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
             
             <motion.form 
@@ -300,24 +231,15 @@ const LoginPage = () => {
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <motion.button
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                >
-                  {isLoading ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Signing in...
-                    </span>
-                  ) : 'Sign in'}
-                </motion.button>
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white btn-pride focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? 'Signing in...' : 'Sign in'}
+                  </button>
+                </div>
               </motion.div>
             </motion.form>
 
@@ -369,9 +291,9 @@ const LoginPage = () => {
                 </motion.span>
               </p>
             </motion.div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };

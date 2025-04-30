@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
     },
     {
       name: 'Chats',
-      path: '/chats',
+      path: '/chat',
       icon: ChatBubbleLeftRightIcon,
       requiresAuth: true
     },
@@ -83,6 +83,23 @@ const Layout = ({ children }) => {
   
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* LGBTQ+ Focus Banner */}
+      <div className="bg-gradient-to-r from-pride-purple via-pride-blue to-pride-red overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="rainbow-shimmer w-full h-full"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 py-1.5 sm:px-6 lg:px-8 text-center">
+          <p className="text-white text-sm font-medium flex items-center justify-center">
+            <SparklesIcon className="inline-block h-4 w-4 mr-1 animate-pulse" aria-hidden="true" />
+            <span className="relative inline-block">
+              <span>Proudly designed for the LGBTQ+ community</span>
+              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-white opacity-50"></span>
+            </span>
+            <SparklesIcon className="inline-block h-4 w-4 ml-1 animate-pulse" aria-hidden="true" />
+          </p>
+        </div>
+      </div>
+      
       {/* Header/Navigation with rainbow indicator */}
       <header 
         className={`${
@@ -91,62 +108,83 @@ const Layout = ({ children }) => {
         aria-label="Main navigation"
       >
         {/* Rainbow progress bar at top of navigation */}
-        <div className="h-1 w-full pride-gradient"></div>
+        <div className="h-2 w-full pride-gradient"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Rainbow accent in the header background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-50 to-transparent opacity-40"></div>
+          
+          <div className="flex justify-between h-16 relative">
             {/* Logo and App name */}
             <div className="flex items-center">
               <Link 
                 to="/" 
-                className="flex-shrink-0 flex items-center" 
+                className="flex-shrink-0 flex items-center group transition-transform duration-300 hover:scale-105" 
                 aria-label="Amouré home"
               >
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full pride-gradient flex items-center justify-center mr-2">
-                    <HeartIconSolid className="h-5 w-5 text-white" />
+                  <div className="w-10 h-10 rounded-full pride-gradient flex items-center justify-center mr-2 rainbow-shimmer">
+                    <HeartIconSolid className="h-5 w-5 text-white animated-heart" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                    <div className="w-3 h-3 rainbow-shimmer rounded-full pride-gradient"></div>
                   </div>
                 </div>
-                <span className="text-2xl font-bold bg-clip-text text-transparent pride-gradient">
-                  Amouré
-                </span>
+                <div className="flex flex-col items-start ml-1">
+                  <span className="text-xl font-bold text-primary-600">
+                    Amouré
+                  </span>
+                  <span className="px-2 py-0.5 bg-primary-500 text-white text-xs font-bold rounded-md shadow-sm">
+                    LGBTQ+
+                  </span>
+                </div>
               </Link>
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-4 items-center">
+            <nav className="hidden md:flex space-x-4 items-center bg-white/50 backdrop-blur-sm px-3 py-1 rounded-lg shadow-sm">
               {navItems
                 .filter(item => !item.requiresAuth || (item.requiresAuth && currentUser))
-                .map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className={`px-3 py-2 rounded-full text-sm font-medium flex items-center space-x-1
-                      ${
-                        location.pathname === item.path
-                          ? 'bg-primary-600 text-white'
-                          : 'text-gray-600 hover:bg-gray-100'
-                      }
-                      focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
-                      transition-all duration-200
-                    `}
-                    aria-current={location.pathname === item.path ? 'page' : undefined}
-                  >
-                    <item.icon className="h-5 w-5" aria-hidden="true" />
-                    <span>{item.name}</span>
-                    {item.path === '/matches' && currentUser && (
-                      <span className="flex h-5 w-5 relative -top-2 -right-1">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pride-red opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-pride-purple items-center justify-center text-white text-xs">2</span>
-                      </span>
-                    )}
-                  </Link>
-                ))}
+                .map((item, index) => {
+                  // Define different gradient backgrounds for each nav item
+                  const gradients = [
+                    'from-pride-red to-pride-orange',
+                    'from-pride-orange to-pride-yellow',
+                    'from-pride-green to-pride-blue',
+                    'from-pride-blue to-pride-purple'
+                  ];
+                  
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1
+                        ${
+                          location.pathname === item.path
+                            ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-md ring-2 ring-white`
+                            : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
+                        }
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+                        transition-all duration-200
+                      `}
+                      aria-current={location.pathname === item.path ? 'page' : undefined}
+                    >
+                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                      <span>{item.name}</span>
+                      {item.path === '/matches' && currentUser && (
+                        <span className="flex h-5 w-5 relative -top-2 -right-1">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pride-red opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-4 w-4 pride-gradient items-center justify-center text-white text-xs font-bold shadow-sm">2</span>
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
               
               {currentUser ? (
                 <button
                   onClick={handleLogout}
-                  className="px-3 py-2 rounded-full text-sm font-medium text-gray-600 hover:bg-gray-100 flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200"
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-primary-600 flex items-center space-x-1 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 nav-indicator"
                   aria-label="Sign out"
                 >
                   <ArrowLeftOnRectangleIcon className="h-5 w-5" aria-hidden="true" />
@@ -155,7 +193,7 @@ const Layout = ({ children }) => {
               ) : (
                 <Link
                   to="/login"
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-md transition-all duration-200"
+                  className="px-4 py-2 rounded-lg text-sm font-medium btn-pride text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-md transition-all duration-200"
                   aria-label="Sign in"
                 >
                   Sign In
@@ -167,15 +205,16 @@ const Layout = ({ children }) => {
             <div className="md:hidden flex items-center">
               <button
                 onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-full text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="inline-flex items-center justify-center p-2 rounded-full text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 hover:scale-110 group overflow-hidden"
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               >
+                <div className="absolute inset-0 opacity-0 pride-gradient group-hover:opacity-10 transition-opacity duration-300"></div>
                 {isMenuOpen ? (
-                  <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  <XMarkIcon className="block h-6 w-6 group-hover:text-primary-600" aria-hidden="true" />
                 ) : (
-                  <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className="block h-6 w-6 group-hover:text-primary-600" aria-hidden="true" />
                 )}
               </button>
             </div>
@@ -185,33 +224,43 @@ const Layout = ({ children }) => {
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden" id="mobile-menu">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm mt-1">
               {navItems
                 .filter(item => !item.requiresAuth || (item.requiresAuth && currentUser))
-                .map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className={`block px-3 py-2 rounded-full text-base font-medium flex items-center space-x-2
-                      ${
-                        location.pathname === item.path
-                          ? 'bg-primary-600 text-white'
-                          : 'text-gray-600 hover:bg-gray-100'
-                      }
-                      focus:outline-none focus:ring-2 focus:ring-primary-500
-                    `}
-                    aria-current={location.pathname === item.path ? 'page' : undefined}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <item.icon className="h-5 w-5" aria-hidden="true" />
-                    <span>{item.name}</span>
-                    {item.path === '/matches' && currentUser && (
-                      <span className="inline-flex rounded-full bg-pride-red text-white px-2 py-0.5 text-xs">
-                        2
-                      </span>
-                    )}
-                  </Link>
-                ))}
+                .map((item, index) => {
+                  // Define different gradient backgrounds for each nav item
+                  const gradients = [
+                    'from-pride-red to-pride-orange',
+                    'from-pride-orange to-pride-yellow',
+                    'from-pride-green to-pride-blue',
+                    'from-pride-blue to-pride-purple'
+                  ];
+                  
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`block px-3 py-2 rounded-lg text-base font-medium flex items-center space-x-2
+                        ${
+                          location.pathname === item.path
+                            ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-sm ring-2 ring-white`
+                            : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
+                        }
+                        focus:outline-none focus:ring-2 focus:ring-primary-500
+                      `}
+                      aria-current={location.pathname === item.path ? 'page' : undefined}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                      <span>{item.name}</span>
+                      {item.path === '/matches' && currentUser && (
+                        <span className="inline-flex rounded-full pride-gradient text-white px-2 py-0.5 text-xs font-bold">
+                          2
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
                 
               {currentUser ? (
                 <button
@@ -219,7 +268,7 @@ const Layout = ({ children }) => {
                     handleLogout();
                     setIsMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 rounded-full text-base font-medium text-gray-600 hover:bg-gray-100 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-gray-600 hover:bg-gray-100 hover:text-primary-600 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-primary-500 nav-indicator"
                   aria-label="Sign out"
                 >
                   <ArrowLeftOnRectangleIcon className="h-5 w-5" aria-hidden="true" />
@@ -228,7 +277,7 @@ const Layout = ({ children }) => {
               ) : (
                 <Link
                   to="/login"
-                  className="block px-3 py-2 rounded-full text-base font-medium bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 mt-2"
+                  className="block px-3 py-2 rounded-lg text-base font-medium btn-pride text-white focus:outline-none focus:ring-2 focus:ring-primary-500 mt-2"
                   aria-label="Sign in"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -241,43 +290,69 @@ const Layout = ({ children }) => {
       </header>
       
       {/* Main content */}
-      <main className="flex-grow">
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="flex-grow w-full overflow-hidden">
+        <div className="w-full mx-auto">
           {children}
         </div>
       </main>
       
       {/* Footer */}
-      <footer className="bg-white py-4 border-t border-gray-200" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">Footer</h2>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center md:flex-row md:justify-between md:items-center">
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full pride-gradient flex items-center justify-center mr-2">
-                <HeartIconSolid className="h-4 w-4 text-white" />
+      <footer className="bg-white">
+        {/* Rainbow divider before footer */}
+        <div className="h-2 rainbow-divider"></div>
+        
+        <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 relative">
+          {/* Subtle background elements */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white opacity-50"></div>
+          
+          <div className="relative">
+            <nav className="flex flex-wrap justify-center -mx-5 -my-2">
+              <div className="px-5 py-2">
+                <Link to="/about" className="text-base text-gray-600 hover:text-primary-600 transition-colors nav-indicator">
+                  About
+                </Link>
               </div>
-              <p className="text-gray-500 text-sm">
-                &copy; {new Date().getFullYear()} Amouré. All rights reserved.
-              </p>
+              <div className="px-5 py-2">
+                <Link to="/safety" className="text-base text-gray-600 hover:text-primary-600 transition-colors nav-indicator">
+                  Safety
+                </Link>
+              </div>
+              <div className="px-5 py-2">
+                <Link to="/privacy" className="text-base text-gray-600 hover:text-primary-600 transition-colors nav-indicator">
+                  Privacy
+                </Link>
+              </div>
+              <div className="px-5 py-2">
+                <Link to="/terms" className="text-base text-gray-600 hover:text-primary-600 transition-colors nav-indicator">
+                  Terms
+                </Link>
+              </div>
+            </nav>
+            
+            {/* LGBTQ+ Focus Section */}
+            <div className="mt-8 border-t border-gray-200 pt-8">
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex space-x-3 mb-4">
+                  <div className="w-8 h-8 rounded-full bg-pride-red transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-orange transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-yellow transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-green transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-blue transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                  <div className="w-8 h-8 rounded-full bg-pride-purple transform transition-all hover:scale-125 shadow-md cursor-pointer"></div>
+                </div>
+              </div>
             </div>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/about" className="text-gray-500 hover:text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded">
-                About
-              </Link>
-              <Link to="/safety" className="text-gray-500 hover:text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded">
-                Safety
-              </Link>
-              <Link to="/privacy" className="text-gray-500 hover:text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded">
-                Privacy
-              </Link>
-              <Link to="/terms" className="text-gray-500 hover:text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded">
-                Terms
-              </Link>
+            
+            <div className="mt-8 flex justify-center">
+              <div className="text-center">
+                <p className="text-gray-500 mb-2">
+                  © {new Date().getFullYear()} Amouré. All rights reserved.
+                </p>
+                <p className="text-xs text-gray-400">
+                  Proudly created for the LGBTQ+ community with love ❤️
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="mt-4 text-center text-xs text-gray-400 flex items-center justify-center">
-            <SparklesIcon className="h-3 w-3 mr-1" />
-            <span>Amouré is committed to UN SDG 5 (Gender Equality) and SDG 10 (Reduced Inequalities)</span>
           </div>
         </div>
       </footer>
@@ -285,4 +360,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout; 
+export default Layout;
