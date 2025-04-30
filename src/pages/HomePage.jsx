@@ -121,7 +121,7 @@ const HomePage = () => {
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-gray-900 sm:mt-5 sm:text-5xl lg:mt-6">
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         <span className="text-gray-900 text-4xl sm:text-5xl lg:text-6xl">Dating for the</span>
-                        <span className="identity-capsule relative inline-flex items-center justify-center px-10 py-3 rounded-full bg-white shadow-sm overflow-hidden min-w-[240px]">
+                        <span className="identity-capsule relative inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-3 rounded-full bg-white shadow-sm overflow-hidden min-w-[200px] sm:min-w-[240px]">
                           {identities.map((identity, index) => {
                             // Define different colors for variety
                             const colors = [
@@ -237,7 +237,7 @@ const HomePage = () => {
       </div>
       
       {/* LGBTQ+ Community Focus Section */}
-      <div className="relative py-12 bg-gradient-to-br from-white via-gray-50 to-purple-50 overflow-hidden w-full">
+      <div className="relative py-8 sm:py-12 bg-gradient-to-br from-white via-gray-50 to-purple-50 overflow-hidden w-full">
         {/* Background pride corner accent */}
         <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
           <div className="relative h-full text-lg mx-auto">
@@ -249,19 +249,19 @@ const HomePage = () => {
         <div className="relative w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-base font-semibold text-primary-600 tracking-wide uppercase">Our Community</h2>
-            <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-5xl">
+            <p className="mt-1 text-2xl sm:text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-5xl">
               Made By and For <span className="text-primary-600">LGBTQ+</span> Individuals
             </p>
-            <p className="max-w-2xl mt-5 mx-auto text-xl text-gray-500">
+            <p className="max-w-2xl mt-4 sm:mt-5 mx-auto text-base sm:text-xl text-gray-500">
               Amouré was created specifically to address the unique needs and experiences of the LGBTQ+ community.
             </p>
           </div>
           
-          <div className="mt-10">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-10">
+            <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {communityBenefits.map((benefit) => (
                 <div key={benefit.name} className="pt-6">
-                  <div className="flow-root bg-white rounded-lg shadow-lg px-6 pb-8 h-full pride-card transform transition-all duration-300 hover:shadow-xl hover:scale-105">
+                  <div className="flow-root bg-white rounded-lg shadow-lg px-4 sm:px-6 pb-8 h-full pride-card transform transition-all duration-300 hover:shadow-xl hover:scale-105">
                     <div className="-mt-6">
                       <div>
                         <span className="inline-flex items-center justify-center p-3 pride-gradient rounded-md shadow-lg">
@@ -280,7 +280,7 @@ const HomePage = () => {
       </div>
       
       {/* Features section */}
-      <div className="py-12 bg-white relative overflow-hidden w-full">
+      <div className="py-8 sm:py-12 bg-white relative overflow-hidden w-full">
         {/* Decorative elements */}
         <div className="hidden lg:block absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
         <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
@@ -291,16 +291,16 @@ const HomePage = () => {
         <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="lg:text-center">
             <h2 className="text-base text-primary-600 font-semibold tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="mt-2 text-2xl sm:text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
               A better way to connect
             </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            <p className="mt-4 max-w-2xl text-base sm:text-xl text-gray-500 lg:mx-auto">
               Amouré is designed to create a positive, affirming space where you can be yourself.
             </p>
           </div>
           
-          <div className="mt-10">
-            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+          <div className="mt-8 sm:mt-10">
+            <dl className="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
               {features.map((feature) => (
                 <div key={feature.name} className="relative group">
                   <dt>
@@ -326,8 +326,8 @@ const HomePage = () => {
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full opacity-10"></div>
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white rounded-full opacity-10"></div>
         
-        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8 relative">
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl drop-shadow-md">
+        <div className="max-w-2xl mx-auto text-center py-12 px-4 sm:py-20 sm:px-6 lg:px-8 relative">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white sm:text-4xl drop-shadow-md">
             <span className="block">Ready to find your connection?</span>
             <span className="block mt-2">Join our LGBTQ+ community today!</span>
           </h2>

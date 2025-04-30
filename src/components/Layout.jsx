@@ -399,14 +399,7 @@ const Layout = ({ children }) => {
             {/* LGBTQ+ Focus Section */}
             <div className="mt-8 border-t border-gray-200 pt-8">
               <div className="flex flex-col items-center justify-center">
-                <div className="flex space-x-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-pride-red transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-orange transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-yellow transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-green transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-blue transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                  <div className="w-8 h-8 rounded-full bg-pride-purple transform transition-all hover:scale-125 shadow-md pride-dot"></div>
-                </div>
+                {/* Pride dots removed */}
               </div>
             </div>
             

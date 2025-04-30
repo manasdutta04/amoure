@@ -44,4 +44,37 @@ input[type="url"],
 input[type="number"],
 textarea {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24"><defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23e40303"/><stop offset="20%" stop-color="%23ff8c00"/><stop offset="40%" stop-color="%23ffed00"/><stop offset="60%" stop-color="%23008026"/><stop offset="80%" stop-color="%23004dff"/><stop offset="100%" stop-color="%23750787"/></linearGradient></defs><path d="M4 2h8M8 2v20M4 22h8" stroke="url(%23rainbow)" stroke-width="2" stroke-linecap="round"/></svg>') 8 12, text;
+}
+
+/* Mobile device optimization */
+@media (max-width: 768px) {
+  /* Make all clickable elements have larger touch targets */
+  a, button, .btn, [role="button"], 
+  .clickable, 
+  input[type="submit"], 
+  input[type="button"], 
+  input[type="reset"],
+  input[type="checkbox"], 
+  input[type="radio"], 
+  select,
+  .identity-capsule,
+  .nav-link,
+  .pride-dot {
+    min-height: 44px; /* Apple's recommended minimum touch target size */
+    cursor: pointer !important; /* Use native cursor for mobile */
+  }
+  
+  /* Disable custom cursors on touch devices for better performance */
+  html, 
+  a, button, .btn, [role="button"],
+  input[type="submit"], input[type="button"],
+  .identity-capsule, .nav-link {
+    cursor: auto !important;
+  }
+  
+  /* Enhance tap highlight color to match theme */
+  a, button, .btn, [role="button"],
+  .clickable, .identity-capsule, .nav-link, .pride-dot {
+    -webkit-tap-highlight-color: rgba(117, 7, 135, 0.2); /* Pride purple with transparency */
+  }
 } 
