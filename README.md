@@ -130,11 +130,7 @@ Contributions to Amouré are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📬 Contact
-
-- Lead Developer: [Manas Dutta](https://www.linkedin.com/in/manasdutta04/)
-- GitHub: [github.com/Amoure](https://github.com/manasdutta04/amoure) 
-
 ## 📬 Developers
 
 [![Manas Dutta](https://avatars.githubusercontent.com/u/122201926?size=60)](https://github.com/manasdutta04 "Manas Dutta on GitHub")
+- Lead Developer: [Manas Dutta](https://www.linkedin.com/in/manasdutta04/)
