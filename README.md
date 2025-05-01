@@ -134,3 +134,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Lead Developer: [Manas Dutta](https://www.linkedin.com/in/manasdutta04/)
 - GitHub: [github.com/Amoure](https://github.com/manasdutta04/amoure) 
+
+## 📬 Developers
+
+[![Manas Dutta](https://avatars.githubusercontent.com/u/122201926?size=60)](https://github.com/manasdutta04 "Manas Dutta on GitHub")
