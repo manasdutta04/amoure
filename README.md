@@ -2,7 +2,7 @@
 
 Amouré is an inclusive, accessible dating application designed for the LGBTQ+ community. The app provides a safe space for users to connect, build relationships, and find meaningful connections while supporting core values of equality, inclusivity, and safety.
 
-![Amouré](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftheharrispoll.com%2Fbriefs%2Flgbtq-community-finds-connection-through-online-dating-apps%2F&psig=AOvVaw0CRYYDAX4BBV5a4-2mkKji&ust=1745904261770000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNDonKz--YwDFQAAAAAdAAAAABAE)
+![Amouré](https://github.com/manasdutta04/amoure/blob/main/public/amoure.jpeg)
 
 ## 🌈 Features
 
