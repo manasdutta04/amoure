@@ -179,45 +179,45 @@ const ProfilePage = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-pride-red via-pride-orange to-pride-yellow opacity-20"></div>
               <div className="relative px-4 py-5 sm:px-6 flex items-center justify-between">
-                <div className="flex items-center">
+            <div className="flex items-center">
                   <div className="flex-shrink-0 h-16 w-16 rounded-full bg-white overflow-hidden border-2 border-white shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    <img 
-                      src={userProfile.photos?.[0] || 'https://via.placeholder.com/150'} 
-                      alt={`${userProfile.displayName}'s profile`} 
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="ml-4 text-white">
+                <img 
+                  src={userProfile.photos?.[0] || 'https://via.placeholder.com/150'} 
+                  alt={`${userProfile.displayName}'s profile`} 
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="ml-4 text-white">
                     <h1 className="text-2xl font-bold drop-shadow-lg">{userProfile.displayName}</h1>
-                    <div className="flex items-center space-x-2 mt-1">
-                      {userProfile.pronouns && (
+                <div className="flex items-center space-x-2 mt-1">
+                  {userProfile.pronouns && (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-200 text-primary-800 animate-pulse-slow">
-                          {userProfile.pronouns}
-                        </span>
-                      )}
-                      {userProfile.age && userProfile.visibilitySettings?.ageVisible && (
-                        <span className="text-primary-100">
-                          {userProfile.age} years old
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsEditing(true);
-                      setEditedProfile({...userProfile});
-                    }}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-primary-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transform transition-transform duration-300 hover:scale-105"
-                  >
-                    Edit Profile
-                  </button>
+                      {userProfile.pronouns}
+                    </span>
+                  )}
+                  {userProfile.age && userProfile.visibilitySettings?.ageVisible && (
+                    <span className="text-primary-100">
+                      {userProfile.age} years old
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
-
+            <div>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsEditing(true);
+                  setEditedProfile({...userProfile});
+                }}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-primary-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transform transition-transform duration-300 hover:scale-105"
+              >
+                Edit Profile
+              </button>
+                </div>
+              </div>
+            </div>
+            
             {/* Photo Gallery Section */}
             <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
               <div className="flex items-center justify-between mb-4">
@@ -318,11 +318,11 @@ const ProfilePage = () => {
                   <div className="flex items-center p-3 bg-green-50 rounded-lg transform transition-transform duration-300 hover:scale-105">
                     <ShieldCheckIcon className="h-5 w-5 text-green-500 mr-2" />
                     <span className="text-sm text-gray-700">Trans Inclusive</span>
-                  </div>
+                </div>
                 )}
               </div>
             </div>
-
+            
             {/* Matching Preferences Section */}
             <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
               <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
@@ -408,10 +408,10 @@ const ProfilePage = () => {
                   <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${userProfile.visibilitySettings?.pronounsVisible ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                     {userProfile.visibilitySettings?.pronounsVisible ? 'Visible' : 'Hidden'}
                   </span>
-                </div>
               </div>
             </div>
           </div>
+        </div>
         )}
       </div>
     </Layout>

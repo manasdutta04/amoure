@@ -22,7 +22,9 @@ import {
   FaceSmileIcon,
   MicrophoneIcon,
   GifIcon,
-  EllipsisHorizontalIcon
+  EllipsisHorizontalIcon,
+  ChevronLeftIcon, 
+  ChevronRightIcon
 } from '@heroicons/react/24/outline';
 import { ChatBubbleLeftRightIcon as ChatIconSolid } from '@heroicons/react/24/solid';
 
@@ -56,6 +58,11 @@ const ChatPage = () => {
     .pulse-animation {
       animation: pulse 2s infinite;
     }
+    
+    /* Custom radial gradient for message background */
+    .bg-gradient-radial {
+      background-image: radial-gradient(circle at center, #f9fafb 0%, #f3f4f6 100%);
+    }
   `;
 
   const { chatId } = useParams();
@@ -71,6 +78,7 @@ const ChatPage = () => {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   // Handle responsive layout
   useEffect(() => {
@@ -78,6 +86,11 @@ const ChatPage = () => {
       setIsMobileView(window.innerWidth < 768);
       if (window.innerWidth >= 768) {
         setShowChats(true);
+        
+        // Automatically show sidebar on large screens initially
+        if (window.innerWidth > 1280) {
+          setSidebarCollapsed(false);
+        }
       }
     };
     
@@ -188,7 +201,7 @@ const ChatPage = () => {
         if (chatId) {
           const selectedChat = mockChats.find(chat => chat.id === chatId);
           if (selectedChat) {
-            setActiveChat(selectedChat);
+          setActiveChat(selectedChat);
             
             // Update lastAccessed time for this match in localStorage
             if (storedMatches) {
@@ -373,10 +386,15 @@ const ChatPage = () => {
     return text.substring(0, maxLength - 3) + '...';
   };
   
+  // Toggle sidebar on desktop
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
+  
   return (
     <Layout>
       <style>{pulseAnimationStyle}</style>
-      <div className="max-w-7xl mx-auto px-0 sm:px-4 md:px-6 lg:px-8 py-3 md:py-6">
+      <div className="md:px-0 md:pt-0 md:pb-0">
         <AnimatePresence mode="wait">
           {loading ? (
             <motion.div 
@@ -395,9 +413,9 @@ const ChatPage = () => {
               </div>
             </motion.div>
           ) : (
-            <div className="flex flex-col">
-              {/* Page Header - Only visible on larger screens */}
-              <div className="hidden md:block text-center mb-6">
+            <div className="flex flex-col md:h-[calc(100vh-64px)]">
+              {/* Page Header - Only visible on smaller screens */}
+              <div className="md:hidden text-center mb-6">
                 <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
                   Messages
                 </h1>
@@ -405,7 +423,7 @@ const ChatPage = () => {
                   Connect with your matches through meaningful conversations.
                 </p>
               </div>
-              
+        
               {error && (
                 <div className="rounded-md bg-red-50 p-4 mb-4">
                   <div className="flex">
@@ -416,24 +434,24 @@ const ChatPage = () => {
                   </div>
                 </div>
               )}
-              
-              <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100">
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-                  {/* Chat list sidebar */}
-                  {(showChats || !isMobileView) && (
+        
+              <div className="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-100 md:rounded-none md:shadow-none md:border-0 md:h-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:h-full">
+                  {/* Chat list sidebar - Only show if not collapsed on desktop */}
+                  {((showChats || !isMobileView) && (!sidebarCollapsed || isMobileView)) && (
                     <motion.div 
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.2 }}
-                      className="md:border-r border-gray-200 md:col-span-1"
+                      className="md:border-r border-gray-200 md:col-span-1 md:h-full relative"
                     >
                       <div className="sticky top-0 z-10 bg-white px-4 py-3 border-b border-gray-200 flex items-center justify-between">
                         <h2 className="text-lg font-medium text-gray-900 flex items-center">
                           <ChatBubbleLeftRightIcon className="h-5 w-5 mr-2 text-primary-600" />
                           Conversations
                         </h2>
-                        <div className="flex items-center">
+                        <div className="flex items-center space-x-2">
                           <button 
                             className="p-1.5 rounded-full bg-primary-50 text-primary-600 hover:bg-primary-100 transition-colors"
                             aria-label="New message"
@@ -442,8 +460,8 @@ const ChatPage = () => {
                           </button>
                         </div>
                       </div>
-                      
-                      <div className="overflow-y-auto h-[calc(100vh-260px)] md:h-[calc(100vh-330px)]">
+                
+                      <div className="overflow-y-auto h-[calc(100vh-260px)] md:h-[calc(100vh-130px)]">
                         {chats.length === 0 ? (
                           <div className="p-8 text-center">
                             <div className="mx-auto h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
@@ -456,20 +474,20 @@ const ChatPage = () => {
                             >
                               <HeartIcon className="h-5 w-5 mr-2" />
                               Find Matches
-                            </Link>
-                          </div>
-                        ) : (
-                          <ul className="divide-y divide-gray-200">
-                            {chats.map((chat) => {
-                              const isActive = activeChat && activeChat.id === chat.id;
-                              
-                              return (
-                                <li key={chat.id}>
-                                  <button
+                        </Link>
+                    </div>
+                  ) : (
+                    <ul className="divide-y divide-gray-200">
+                      {chats.map((chat) => {
+                        const isActive = activeChat && activeChat.id === chat.id;
+                        
+                        return (
+                          <li key={chat.id}>
+                            <button
                                     className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors ${
                                       isActive ? 'bg-primary-50' : ''
                                     }`}
-                                    onClick={() => setActiveChat(chat)}
+                              onClick={() => setActiveChat(chat)}
                                   >
                                     <div className="flex items-center">
                                       <div className="flex-shrink-0 relative">
@@ -481,16 +499,16 @@ const ChatPage = () => {
                                         {chat.otherUser.online && (
                                           <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-white"></span>
                                         )}
-                                      </div>
+                                  </div>
                                       <div className="ml-4 flex-1 min-w-0">
                                         <div className="flex items-center justify-between">
-                                          <p className="text-sm font-medium text-gray-900 truncate">
+                                  <p className="text-sm font-medium text-gray-900 truncate">
                                             {chat.otherUser.displayName}
-                                          </p>
+                                  </p>
                                           <p className="text-xs text-gray-500">
                                             {formatChatTimestamp(chat.lastMessageTime)}
-                                          </p>
-                                        </div>
+                                  </p>
+                                </div>
                                         <div className="flex items-center justify-between mt-1">
                                           <p className="text-sm text-gray-500 truncate">
                                             {chat.lastMessageSender === currentUser.uid ? 'You: ' : ''}
@@ -503,37 +521,50 @@ const ChatPage = () => {
                                           )}
                                         </div>
                                       </div>
-                                    </div>
-                                  </button>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        )}
-                      </div>
+                              </div>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
                     </motion.div>
                   )}
-                  
-                  {/* Chat window */}
+              
+              {/* Chat window - Adjust columns based on sidebar state */}
                   {(!showChats || !isMobileView) && (
                     <motion.div 
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.2 }}
-                      className="md:col-span-2 lg:col-span-3 flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-330px)]"
+                      className={`${sidebarCollapsed && !isMobileView ? 'md:col-span-3 lg:col-span-4 xl:col-span-5' : 'md:col-span-2 lg:col-span-3 xl:col-span-4'} flex flex-col h-[calc(100vh-200px)] md:h-[calc(100vh-64px)]`}
                     >
-                      {activeChat ? (
-                        <>
-                          {/* Chat header */}
+                {activeChat ? (
+                  <>
+                    {/* Chat header */}
                           <div className="sticky top-0 z-10 flex items-center bg-white border-b border-gray-200 px-4 py-3">
-                            {isMobileView && (
+                            {isMobileView ? (
                               <button
                                 onClick={handleBackToChats}
                                 className="mr-3 p-1.5 rounded-full hover:bg-gray-100 text-gray-500"
                                 aria-label="Back to chat list"
                               >
                                 <ArrowLeftIcon className="h-5 w-5" />
+                              </button>
+                            ) : (
+                              /* Toggle sidebar button for desktop */
+                              <button
+                                onClick={toggleSidebar}
+                                className="mr-3 p-1.5 rounded-full hover:bg-gray-100 text-gray-500 hidden md:block"
+                                aria-label={sidebarCollapsed ? "Show sidebar" : "Hide sidebar"}
+                              >
+                                {sidebarCollapsed ? (
+                                  <ChevronRightIcon className="h-5 w-5" />
+                                ) : (
+                                  <ChevronLeftIcon className="h-5 w-5" />
+                                )}
                               </button>
                             )}
                             <div className="flex-shrink-0 relative mr-3">
@@ -557,7 +588,7 @@ const ChatPage = () => {
                                   <span className="inline-block h-4 w-4 rounded-full overflow-hidden">
                                     <span className="pride-gradient w-full h-full block"></span>
                                   </span>
-                                </span>
+                          </span>
                               </h3>
                               <p className="text-xs text-gray-500 flex items-center">
                                 {activeChat.otherUser.online ? (
@@ -572,7 +603,7 @@ const ChatPage = () => {
                                   </>
                                 )}
                               </p>
-                            </div>
+                        </div>
                             <div className="flex space-x-2">
                               {/* Search in conversation button */}
                               <button
@@ -611,29 +642,29 @@ const ChatPage = () => {
                               >
                                 <EllipsisHorizontalIcon className="h-5 w-5" />
                               </button>
-                            </div>
-                          </div>
-                          
-                          {/* Messages */}
-                          <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-gray-50 to-white">
-                            {messages.length === 0 ? (
+                      </div>
+                    </div>
+                    
+                    {/* Messages */}
+                          <div className="flex-1 p-4 overflow-y-auto bg-gradient-to-b from-gray-50 to-white md:from-white md:to-white md:bg-gradient-radial">
+                      {messages.length === 0 ? (
                               <div className="flex flex-col items-center justify-center h-full p-6">
-                                <div className="pride-gradient w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                                  <SparklesIcon className="h-8 w-8 text-white" />
+                                <div className="pride-gradient w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                                  <SparklesIcon className="h-8 w-8 md:h-10 md:w-10 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">Start the conversation</h3>
-                                <p className="text-gray-500 text-center mb-6">
+                                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3">Start the conversation</h3>
+                                <p className="text-gray-500 text-center mb-6 max-w-md">
                                   Send a message to start chatting with {activeChat.otherUser.displayName}
                                 </p>
                                 <button
                                   onClick={() => inputRef.current?.focus()}
-                                  className="px-4 py-2 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors"
+                                  className="px-6 py-3 bg-primary-600 text-white rounded-full font-medium hover:bg-primary-700 transition-colors transform hover:scale-105"
                                 >
                                   Say Hello
                                 </button>
-                              </div>
-                            ) : (
-                              <div className="space-y-4" role="list" aria-label="Message list">
+                        </div>
+                      ) : (
+                        <div className="space-y-4 px-2 md:px-4 md:py-2" role="list" aria-label="Message list">
                                 {messages.map((message, index) => {
                                   // Group messages by date
                                   const messageDate = new Date(message.timestamp.toDate ? message.timestamp.toDate() : message.timestamp);
@@ -675,39 +706,39 @@ const ChatPage = () => {
                                         </div>
                                       )}
                                       
-                                      <MessageBubble
-                                        message={message}
-                                        isOwnMessage={message.senderId === currentUser.uid}
-                                        onReport={handleReportMessage}
+                            <MessageBubble
+                              message={message}
+                              isOwnMessage={message.senderId === currentUser.uid}
+                              onReport={handleReportMessage}
                                         isConsecutive={isConsecutive}
-                                      />
+                            />
                                     </React.Fragment>
                                   );
                                 })}
-                                <div ref={messagesEndRef} />
-                              </div>
-                            )}
-                          </div>
-                          
-                          {/* Message input */}
-                          <div className="bg-white border-t border-gray-200 p-3">
-                            <form onSubmit={handleSendMessage} className="flex space-x-2">
-                              <div className="flex items-center space-x-2">
+                          <div ref={messagesEndRef} />
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Message input */}
+                          <div className="bg-white border-t border-gray-200 p-3 md:p-4">
+                      <form onSubmit={handleSendMessage} className="flex space-x-2 md:space-x-3 md:mx-auto md:max-w-4xl">
+                              <div className="flex items-center space-x-1 md:space-x-2">
                                 <button
                                   type="button"
-                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition"
+                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition transform hover:scale-110"
                                   aria-label="Add attachment"
                                 >
-                                  <PhotoIcon className="h-5 w-5" />
+                                  <PhotoIcon className="h-5 w-5 md:h-6 md:w-6" />
                                 </button>
                                 <button
                                   type="button"
-                                  className="relative p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition group"
+                                  className="relative p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition transform hover:scale-110 group"
                                   aria-label="Add emoji"
                                 >
-                                  <FaceSmileIcon className="h-5 w-5" />
+                                  <FaceSmileIcon className="h-5 w-5 md:h-6 md:w-6" />
                                   {/* Emoji picker preview (would be replaced with real component) */}
-                                  <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block shadow-lg rounded-lg bg-white border border-gray-200 p-2 w-64">
+                                  <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block shadow-lg rounded-lg bg-white border border-gray-200 p-2 w-64 z-30">
                                     <div className="grid grid-cols-7 gap-1">
                                       {['😀','😂','😍','🥰','😊','😎','🙌','👍','❤️','🔥','✨','🎉'].map(emoji => (
                                         <button 
@@ -725,31 +756,31 @@ const ChatPage = () => {
                                 </button>
                                 <button
                                   type="button"
-                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition md:block hidden"
+                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition transform hover:scale-110 md:block hidden"
                                   aria-label="Add GIF"
                                 >
-                                  <GifIcon className="h-5 w-5" />
+                                  <GifIcon className="h-5 w-5 md:h-6 md:w-6" />
                                 </button>
                                 <button
                                   type="button"
-                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition"
+                                  className="p-2 text-gray-500 hover:text-primary-600 hover:bg-gray-100 rounded-full transition transform hover:scale-110"
                                   aria-label="Voice message"
                                 >
-                                  <MicrophoneIcon className="h-5 w-5" />
+                                  <MicrophoneIcon className="h-5 w-5 md:h-6 md:w-6" />
                                 </button>
                               </div>
                               <div className="relative flex-1 group">
-                                <input
+                        <input
                                   ref={inputRef}
-                                  type="text"
-                                  value={newMessage}
-                                  onChange={(e) => setNewMessage(e.target.value)}
-                                  placeholder="Type a message..."
-                                  className="pr-10 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-full sm:text-sm border-gray-300 bg-gray-50 transition-all duration-200 focus:shadow-inner"
-                                  aria-label="Message input"
-                                />
+                          type="text"
+                          value={newMessage}
+                          onChange={(e) => setNewMessage(e.target.value)}
+                          placeholder="Type a message..."
+                                  className="pr-10 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-full sm:text-sm md:text-base border-gray-300 bg-gray-50 transition-all duration-200 focus:shadow-inner md:py-3"
+                          aria-label="Message input"
+                        />
                                 {!newMessage.trim() && (
-                                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs text-gray-400 pointer-events-none">
+                                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs md:text-sm text-gray-400 pointer-events-none">
                                     Press Enter to send
                                   </div>
                                 )}
@@ -764,23 +795,23 @@ const ChatPage = () => {
                                 )}
                               </div>
                               <motion.button
-                                type="submit"
-                                disabled={!newMessage.trim()}
-                                className="inline-flex items-center justify-center p-2 border border-transparent rounded-full shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                                aria-label="Send message"
+                          type="submit"
+                          disabled={!newMessage.trim()}
+                                className="inline-flex items-center justify-center p-2 md:p-3 border border-transparent rounded-full shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-110"
+                          aria-label="Send message"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                              >
-                                <PaperAirplaneIcon className="h-5 w-5 -rotate-45" aria-hidden="true" />
+                        >
+                                <PaperAirplaneIcon className="h-5 w-5 md:h-6 md:w-6 -rotate-45" aria-hidden="true" />
                               </motion.button>
-                            </form>
+                      </form>
                             {/* Privacy notice */}
                             <div className="mt-2 text-xs text-gray-400 text-center">
                               All messages are encrypted. <button className="text-primary-500 hover:underline">Learn more</button>
                             </div>
-                          </div>
-                        </>
-                      ) : (
+                    </div>
+                  </>
+                ) : (
                         <div className="flex flex-col items-center justify-center h-full text-gray-500 p-4">
                           <div className="pride-gradient w-16 h-16 rounded-full flex items-center justify-center mb-4">
                             <ChatBubbleLeftRightIcon className="h-8 w-8 text-white" />
@@ -788,21 +819,21 @@ const ChatPage = () => {
                           <p className="text-xl font-medium text-gray-900 mb-2">No conversation selected</p>
                           <p className="text-gray-500 mb-6">Select a chat from the sidebar to start messaging</p>
                           <div className="flex">
-                            <Link 
-                              to="/matches" 
+                    <Link 
+                      to="/matches" 
                               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 mx-2"
-                            >
-                              Find Matches
-                            </Link>
-                          </div>
+                    >
+                      Find Matches
+                    </Link>
+                  </div>
                         </div>
                       )}
                     </motion.div>
-                  )}
+                )}
                 </div>
-              </div>
             </div>
-          )}
+          </div>
+        )}
         </AnimatePresence>
       </div>
     </Layout>

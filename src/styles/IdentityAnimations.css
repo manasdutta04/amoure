@@ -1,6 +1,6 @@
-/* Custom cursor styles */
+/* Custom cursor styles - DISABLED */
 :root {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><defs><linearGradient id='rainbow' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23e40303'/><stop offset='16.6%' stop-color='%23ff8c00'/><stop offset='33.3%' stop-color='%23ffed00'/><stop offset='50%' stop-color='%23008026'/><stop offset='66.6%' stop-color='%23004dff'/><stop offset='83.3%' stop-color='%23750787'/><stop offset='100%' stop-color='%23e40303'/></linearGradient></defs><path d='M9.06 2.6a1 1 0 0 1 1.56-.14l11 11a1 1 0 0 1-.71 1.7h-4.2l2.48 4.97a1 1 0 0 1-.9 1.43 1 1 0 0 1-.78-.38l-2.4-2.88-2.51 2.51a1 1 0 0 1-1.69-.43L9.06 2.6z' fill='url(%23rainbow)' stroke='white' stroke-width='1'/></svg>") 0 0, pointer;
+  cursor: auto;
 }
 
 a, button, .btn, [role="button"], 
@@ -12,7 +12,7 @@ input[type="checkbox"],
 input[type="radio"], 
 select,
 .identity-capsule {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><linearGradient id='rainbow' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23e40303'/><stop offset='16.6%' stop-color='%23ff8c00'/><stop offset='33.3%' stop-color='%23ffed00'/><stop offset='50%' stop-color='%23008026'/><stop offset='66.6%' stop-color='%23004dff'/><stop offset='83.3%' stop-color='%23750787'/><stop offset='100%' stop-color='%23e40303'/></linearGradient></defs><g><circle cx='16' cy='16' r='13' fill='url(%23rainbow)' stroke='white' stroke-width='1.5' opacity='0.8'/><path d='M12 12L20 20M12 20L20 12' stroke='white' stroke-width='3' stroke-linecap='round'/></g></svg>") 8 8, pointer;
+  cursor: pointer;
 }
 
 /* Identity Tag Animations */

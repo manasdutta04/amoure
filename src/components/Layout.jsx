@@ -300,21 +300,21 @@ const Layout = ({ children }) => {
                   
                   return (
                     <div key={item.name} className="flex items-center">
-                      <Link
-                        to={item.path}
+                    <Link
+                      to={item.path}
                         className={`block px-3 py-2 rounded-lg text-base font-medium flex items-center space-x-2 flex-grow
-                          ${
-                            location.pathname === item.path
-                              ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-sm ring-2 ring-white`
-                              : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
-                          }
-                          focus:outline-none focus:ring-2 focus:ring-primary-500
-                        `}
-                        aria-current={location.pathname === item.path ? 'page' : undefined}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <item.icon className="h-5 w-5" aria-hidden="true" />
-                        <span>{item.name}</span>
+                        ${
+                          location.pathname === item.path
+                            ? `bg-gradient-to-r ${gradients[index % gradients.length]} text-white shadow-sm ring-2 ring-white`
+                            : 'text-gray-600 hover:bg-gray-100 hover:text-primary-600 nav-indicator'
+                        }
+                        focus:outline-none focus:ring-2 focus:ring-primary-500
+                      `}
+                      aria-current={location.pathname === item.path ? 'page' : undefined}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <item.icon className="h-5 w-5" aria-hidden="true" />
+                      <span>{item.name}</span>
                       </Link>
                       {item.path === '/matches' && currentUser && hasNewMatches() && (
                         <button

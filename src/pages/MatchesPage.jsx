@@ -72,6 +72,54 @@ const MatchesPage = () => {
             'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             'https://images.unsplash.com/photo-1499155286265-79a9dc9c6380?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           ]
+        },
+        {
+          id: '15',
+          displayName: 'Rowan Quinn',
+          age: 27,
+          pronouns: 'ze/hir',
+          genderIdentity: 'non-binary',
+          sexualOrientation: 'queer',
+          location: 'Berlin, Germany',
+          bio: 'Electronic music producer, vegan chef, and language enthusiast. Looking for creative souls to connect with.',
+          interests: ['music production', 'cooking', 'languages', 'travel'],
+          photoURL: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '16',
+          displayName: 'Skylar Patel',
+          age: 30,
+          pronouns: 'they/them',
+          genderIdentity: 'genderqueer',
+          sexualOrientation: 'pansexual',
+          location: 'Toronto, Canada',
+          bio: 'UX designer, board game developer, and amateur astronomer. Seeking connections with creative and curious minds.',
+          interests: ['design', 'board games', 'astronomy', 'sci-fi'],
+          photoURL: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '17',
+          displayName: 'Elliot Chen',
+          age: 28,
+          pronouns: 'he/him',
+          genderIdentity: 'transgender man',
+          sexualOrientation: 'bisexual',
+          location: 'Melbourne, Australia',
+          bio: 'Environmental scientist, rock climber, and podcast host. Looking for someone to share adventures and meaningful conversations.',
+          interests: ['environment', 'climbing', 'podcasts', 'hiking'],
+          photoURL: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1504257432389-52343af06ae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1522556189639-b150ed9c4330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
         }
       ];
 
@@ -221,6 +269,102 @@ const MatchesPage = () => {
           photoURLs: [
             'https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '18',
+          displayName: 'Nadia Williams',
+          age: 26,
+          pronouns: 'she/her',
+          genderIdentity: 'cisgender woman',
+          sexualOrientation: 'lesbian',
+          location: 'London, UK',
+          bio: 'Book editor, amateur botanist, and yoga instructor. Looking for genuine connections with kind-hearted souls.',
+          interests: ['literature', 'plants', 'yoga', 'vintage shopping'],
+          photoURL: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '19',
+          displayName: 'Aspen Rodriguez',
+          age: 31,
+          pronouns: 'they/them',
+          genderIdentity: 'non-binary',
+          sexualOrientation: 'queer',
+          location: 'Barcelona, Spain',
+          bio: 'Architect, urban sketcher, and flamenco enthusiast. Seeking connection with creative and thoughtful individuals.',
+          interests: ['architecture', 'sketching', 'dance', 'travel'],
+          photoURL: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '20',
+          displayName: 'Theo Nakamura',
+          age: 29,
+          pronouns: 'he/him',
+          genderIdentity: 'cisgender man',
+          sexualOrientation: 'gay',
+          location: 'Tokyo, Japan',
+          bio: 'Fashion designer, photographer, and food lover. Looking for someone who appreciates creativity and good conversation.',
+          interests: ['fashion', 'photography', 'food', 'art'],
+          photoURL: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1541855492-581f618f69a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '21',
+          displayName: 'Jade Thompson',
+          age: 27,
+          pronouns: 'she/her',
+          genderIdentity: 'transgender woman',
+          sexualOrientation: 'pansexual',
+          location: 'Vancouver, Canada',
+          bio: 'Game developer, hiker, and coffee connoisseur. Seeking meaningful connections with open-minded people.',
+          interests: ['gaming', 'hiking', 'coffee', 'movies'],
+          photoURL: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1502323777036-f29e3972f5e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '22',
+          displayName: 'Omar Hassan',
+          age: 33,
+          pronouns: 'he/him',
+          genderIdentity: 'cisgender man',
+          sexualOrientation: 'bisexual',
+          location: 'Dubai, UAE',
+          bio: 'Tech entrepreneur, amateur chef, and salsa dancer. Looking for genuine connections with people who enjoy both adventure and quiet moments.',
+          interests: ['technology', 'cooking', 'dancing', 'travel'],
+          photoURL: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '23',
+          displayName: 'Ren Takahashi',
+          age: 25,
+          pronouns: 'they/them',
+          genderIdentity: 'non-binary',
+          sexualOrientation: 'queer',
+          location: 'Seoul, South Korea',
+          bio: 'Digital artist, K-pop enthusiast, and bubble tea aficionado. Seeking connections with creative and kind souls.',
+          interests: ['digital art', 'music', 'anime', 'cafes'],
+          photoURL: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1504257432389-52343af06ae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           ]
         }
       ];
@@ -418,6 +562,86 @@ const MatchesPage = () => {
           photoURLs: [
             'https://images.unsplash.com/photo-1499651681375-8afc5a4db253?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             'https://images.unsplash.com/photo-1564923630403-2284b87c0041?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '24',
+          displayName: 'Ava Sanchez',
+          age: 29,
+          pronouns: 'she/her',
+          genderIdentity: 'cisgender woman',
+          sexualOrientation: 'lesbian',
+          location: 'Madrid, Spain',
+          bio: 'Film director, yoga teacher, and amateur botanist. Looking for deep connections with creative individuals.',
+          interests: ['filmmaking', 'yoga', 'plants', 'literature'],
+          photoURL: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '25',
+          displayName: 'Mateo Rossi',
+          age: 32,
+          pronouns: 'he/him',
+          genderIdentity: 'cisgender man',
+          sexualOrientation: 'gay',
+          location: 'Rome, Italy',
+          bio: 'Fashion designer, opera enthusiast, and competitive cyclist. Seeking connections with passionate and authentic people.',
+          interests: ['fashion', 'opera', 'cycling', 'cooking'],
+          photoURL: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '26',
+          displayName: 'Harper Kim',
+          age: 27,
+          pronouns: 'they/them',
+          genderIdentity: 'non-binary',
+          sexualOrientation: 'pansexual',
+          location: 'Stockholm, Sweden',
+          bio: 'UI/UX designer, podcast host, and amateur astronomer. Looking for meaningful connections with curious minds.',
+          interests: ['design', 'podcasting', 'astronomy', 'technology'],
+          photoURL: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '27',
+          displayName: 'Zain Amir',
+          age: 30,
+          pronouns: 'he/him',
+          genderIdentity: 'transgender man',
+          sexualOrientation: 'bisexual',
+          location: 'Mumbai, India',
+          bio: 'Data scientist, cricket player, and documentary filmmaker. Seeking genuine connections with open-minded people.',
+          interests: ['data science', 'cricket', 'filmmaking', 'travel'],
+          photoURL: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1495366691023-cc4eadcc2d7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          ]
+        },
+        {
+          id: '28',
+          displayName: 'Luna Diaz',
+          age: 26,
+          pronouns: 'she/they',
+          genderIdentity: 'genderfluid',
+          sexualOrientation: 'queer',
+          location: 'Mexico City, Mexico',
+          bio: 'Graphic novelist, street artist, and salsa dancer. Looking for someone to share creative adventures and meaningful moments.',
+          interests: ['art', 'comics', 'dancing', 'street art'],
+          photoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          photoURLs: [
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           ]
         }
       ];

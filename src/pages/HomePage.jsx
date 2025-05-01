@@ -294,9 +294,7 @@ const HomePage = () => {
             <p className="mt-2 text-2xl sm:text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
               A better way to connect
             </p>
-            <p className="mt-4 max-w-2xl text-base sm:text-xl text-gray-500 lg:mx-auto">
-              Amouré is designed to create a positive, affirming space where you can be yourself.
-            </p>
+            
           </div>
           
           <div className="mt-8 sm:mt-10">
