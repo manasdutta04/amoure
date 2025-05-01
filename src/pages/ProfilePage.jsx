@@ -37,7 +37,7 @@ const ProfilePage = () => {
           bio: 'I love hiking, reading sci-fi novels, and attending LGBTQ+ community events. Looking for meaningful connections!',
           interests: ['hiking', 'reading', 'cooking', 'activism', 'movies'],
           photos: [
-            'https://via.placeholder.com/400x400?text=Profile+Photo'
+            '/amoure.jpeg'
           ],
           visibilitySettings: {
             profileVisible: true,
@@ -73,7 +73,7 @@ const ProfilePage = () => {
           bio: 'I love hiking, reading sci-fi novels, and attending LGBTQ+ community events. Looking for meaningful connections!',
           interests: ['hiking', 'reading', 'cooking', 'activism', 'movies'],
           photos: [
-            'https://via.placeholder.com/400x400?text=Profile+Photo'
+            '/amoure.jpeg'
           ],
           visibilitySettings: {
             profileVisible: true,
@@ -182,7 +182,7 @@ const ProfilePage = () => {
             <div className="flex items-center">
                   <div className="flex-shrink-0 h-16 w-16 rounded-full bg-white overflow-hidden border-2 border-white shadow-lg transform transition-transform duration-300 hover:scale-105">
                 <img 
-                  src={userProfile.photos?.[0] || 'https://via.placeholder.com/150'} 
+                  src={userProfile.photos?.[0] || '/amoure.jpeg'} 
                   alt={`${userProfile.displayName}'s profile`} 
                   className="h-full w-full object-cover"
                 />
