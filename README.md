@@ -134,3 +134,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 [![Manas Dutta](https://avatars.githubusercontent.com/u/122201926?size=60)](https://github.com/manasdutta04 "Manas Dutta on GitHub")
 - Lead Developer: [Manas Dutta](https://www.linkedin.com/in/manasdutta04/)
+- Co Developer: [Avneet Kaur](https://www.linkedin.com/in/avneet-kaur-0892a032a/)
