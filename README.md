@@ -4,6 +4,8 @@ Amouré is an inclusive, accessible dating application designed for the LGBTQ+ c
 
 ![Amouré](https://github.com/manasdutta04/amoure/blob/main/public/amoure.jpeg)
 
+# Demo Video: [click here](https://www.youtube.com/watch?v=zQM6aI1ClzU&ab_channel=2BitCoder)
+
 ## 🌈 Features
 
 - **Inclusive Profile Creation**: Express your authentic self with options for diverse gender identities, sexual orientations, and pronouns
